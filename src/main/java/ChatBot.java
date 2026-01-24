@@ -1,6 +1,9 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ChatBot {
+    private ArrayList<String> taskList = new ArrayList<>(100);
+
     public void start() {
         this.padMessage("Hello! I'm Ginger.\nWhat can I do for you?");
     }
@@ -19,10 +22,21 @@ public class ChatBot {
             if (input.equals("bye")) {
                 this.stop(); // Show generic exit message
                 break; // Quit while loop
+            } else if (input.equals("list")) {
+                this.listTasks();
+            } else {
+                this.padMessage("Added: " + input);
+                this.taskList.add(input);
             }
-
-            this.padMessage(input);
         }
+    }
+
+    private void listTasks() {
+        ChatBot.addDashes();
+        for (int i = 0; i < this.taskList.size(); i++) {
+            System.out.println(i + 1 + ". " + this.taskList.get(i));
+        }
+        ChatBot.addDashes();
     }
 
     private void padMessage(String s) {
