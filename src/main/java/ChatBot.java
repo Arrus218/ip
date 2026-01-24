@@ -21,11 +21,11 @@ public class ChatBot {
     private final ArrayList<Task> taskList = new ArrayList<>(100);
 
     public void start() {
-        this.padMessage("Hello! I'm Ginger.\nWhat can I do for you?");
+        this.padMessage("Meow! I'm Ginger!\nWhat can I do for you?");
     }
 
     public void stop() {
-        this.padMessage("Bye. Hope to see you again soon!");
+        this.padMessage("Bye! Hope to see you again soon!");
     }
 
     public void listen() {
