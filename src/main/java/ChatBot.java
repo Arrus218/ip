@@ -9,7 +9,7 @@ public class ChatBot {
         ChatBot.padMessage("Bye. Hope to see you again soon!");
     }
 
-    public static void echo() {
+    public static void listen() {
         Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.print(">> ");
