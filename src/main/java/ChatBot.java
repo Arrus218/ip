@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ChatBot {
-    private ArrayList<String> taskList = new ArrayList<>(100);
+    private ArrayList<Task> taskList = new ArrayList<>(100);
 
     public void start() {
         this.padMessage("Hello! I'm Ginger.\nWhat can I do for you?");
@@ -26,7 +26,7 @@ public class ChatBot {
                 this.listTasks();
             } else {
                 this.padMessage("Added: " + input);
-                this.taskList.add(input);
+                this.taskList.add(new Task(input));
             }
         }
     }
