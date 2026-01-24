@@ -34,7 +34,9 @@ public class ChatBot {
     private void listTasks() {
         ChatBot.addDashes();
         for (int i = 0; i < this.taskList.size(); i++) {
-            System.out.println(i + 1 + ". " + this.taskList.get(i));
+            int index = i+1;
+            Task t =  this.taskList.get(i);
+            System.out.println(index + ". " + "[" + t.getStatusIcon() + "] " + t.getDescription());
         }
         ChatBot.addDashes();
     }
