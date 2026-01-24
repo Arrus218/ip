@@ -2,15 +2,11 @@ import java.util.Scanner;
 
 public class ChatBot {
     public static void start() {
-        ChatBot.addDashes();
-        System.out.println("Hello! I'm Ginger.\nWhat can I do for you?");
-        ChatBot.addDashes();
+        ChatBot.padMessage("Hello! I'm Ginger.\nWhat can I do for you?");
     }
 
     public static void stop() {
-        ChatBot.addDashes();
-        System.out.println("Bye. Hope to see you again soon!");
-        ChatBot.addDashes();
+        ChatBot.padMessage("Bye. Hope to see you again soon!");
     }
 
     public static void echo() {
@@ -25,12 +21,16 @@ public class ChatBot {
                 break; // Quit while loop
             }
 
-            ChatBot.addDashes();
-            System.out.println(input);
-            ChatBot.addDashes();
+            ChatBot.padMessage(input);
         }
-
     }
+
+    private static void padMessage(String s) {
+        ChatBot.addDashes();
+        System.out.println(s);
+        ChatBot.addDashes();
+    }
+
     private static void addDashes() {
         System.out.println("------------------------------------------------");
     }
