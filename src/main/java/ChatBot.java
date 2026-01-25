@@ -78,14 +78,18 @@ public class ChatBot {
         if (data.isBlank()) {
             throw new GingerException("No number provided!");
         }
+
+        int index;
         try {
-            int index = Integer.parseInt(data) - 1;
-            return this.taskList.get(index);
+            index = Integer.parseInt(data) - 1;
         } catch (NumberFormatException e) {
-            throw new GingerException("Meow! That's not a number!");
-        } catch (IndexOutOfBoundsException e) {
+            throw new GingerException("Meow! That's not a number!", e);
+        }
+
+        if (index < 0 || index >= this.taskList.size()) {
             throw new GingerException("Meow! That task is not in my list!");
         }
+        return this.taskList.get(index);
     }
 
     private void handleMark(String data) throws GingerException {
