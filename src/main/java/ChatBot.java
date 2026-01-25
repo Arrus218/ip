@@ -5,31 +5,68 @@ public class ChatBot {
     public enum Command {
         BYE {
             @Override
-            public void execute(ChatBot chatBot, int index) {
+            public void execute(ChatBot chatBot, String message) {
                 chatBot.stop();
                 // Show generic exit message
             };
         },
         LIST {
             @Override
-            public void execute(ChatBot chatBot, int index) {
+            public void execute(ChatBot chatBot, String message) {
                 chatBot.listTasks();
             }
         },
         MARK {
             @Override
-            public void execute(ChatBot chatBot, int index) {
+            public void execute(ChatBot chatBot, String message) {
+                int index = Integer.parseInt(message.substring(message.indexOf(" ") + 1));
                 chatBot.setTaskCompletion(index, true);
             }
         },
         UNMARK {
             @Override
-            public void execute(ChatBot chatBot, int index) {
+            public void execute(ChatBot chatBot, String message) {
+                int index = Integer.parseInt(message.substring(message.indexOf(" ") + 1));
                 chatBot.setTaskCompletion(index, false);
+            }
+        },
+        TODO {
+            @Override
+            public void execute(ChatBot chatBot, String message) {
+                Task t = new ToDo(message);
+                chatBot.taskList.add(t);
+                chatBot.padMessage("Added new ToDo task: \n" + t.toString()
+                        + "\nNow you have " + chatBot.taskList.size() + " task(s)!");;
+            }
+        },
+        DEADLINE {
+            @Override
+            public void execute(ChatBot chatBot, String message) {
+                chatBot.padMessage("Added new Deadline task: ");
+                String taskName = message.substring(0, message.indexOf("/"));
+                String by = message.substring(message.indexOf("/by") + 4);
+                Task t = new Deadline(taskName, by);
+                chatBot.taskList.add(t);
+                chatBot.padMessage("Added new Deadline task: \n" + t.toString()
+                        + "\nNow you have " + chatBot.taskList.size() + " task(s)!");;
+            }
+        },
+        EVENT {
+            @Override
+            public void execute(ChatBot chatBot, String message) {
+                chatBot.padMessage("Added new Event task: ");
+                String taskName = message.substring(0, message.indexOf("/"));
+                String from = message.substring(message.indexOf("/from") + 6,
+                        message.lastIndexOf("/") - 1);
+                String to = message.substring(message.lastIndexOf("/") + 4);
+                Task t = new Event(taskName, from, to);
+                chatBot.taskList.add(t);
+                chatBot.padMessage("Added new Event task: \n" + t.toString()
+                        + "\nNow you have " + chatBot.taskList.size() + " task(s)!");
             }
         };
 
-        public abstract void execute(ChatBot chatBot, int index);
+        public abstract void execute(ChatBot chatBot, String message);
 
         public static Command fromString(String s) {
             for (Command c : Command.values()) {
@@ -58,22 +95,20 @@ public class ChatBot {
             System.out.print(">> ");
             // Get user input
             String input = sc.nextLine();
-            int index = 0;
             Command command = null;
-
+            String message = "";
             if (!input.contains(" ")) {
                  command = Command.fromString(input);
             } else {
                  command = Command.fromString(input.substring(0, input.indexOf(" ")));
-                 index = Integer.parseInt(input.substring(input.indexOf(" ") + 1));
+                 message = input.substring(input.indexOf(" ") + 1);
             }
 
             // Check if null
             if (command != null) {
-                command.execute(ChatBot.this, index);
+                command.execute(ChatBot.this, message);
             } else {
-                this.padMessage("Added: " + input);
-                this.taskList.add(new ToDo(input));
+                this.padMessage("Command not found");
             }
         }
     }
