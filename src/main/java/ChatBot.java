@@ -35,33 +35,31 @@ public class ChatBot {
             public void execute(ChatBot chatBot, String message) {
                 Task t = new ToDo(message);
                 chatBot.taskList.add(t);
-                chatBot.padMessage("Added new ToDo task: \n" + t.toString()
+                chatBot.padMessage("Added new ToDo task:\n" + t.toString()
                         + "\nNow you have " + chatBot.taskList.size() + " task(s)!");;
             }
         },
         DEADLINE {
             @Override
             public void execute(ChatBot chatBot, String message) {
-                chatBot.padMessage("Added new Deadline task: ");
                 String taskName = message.substring(0, message.indexOf("/"));
                 String by = message.substring(message.indexOf("/by") + 4);
                 Task t = new Deadline(taskName, by);
                 chatBot.taskList.add(t);
-                chatBot.padMessage("Added new Deadline task: \n" + t.toString()
+                chatBot.padMessage("Added new Deadline task:\n" + t.toString()
                         + "\nNow you have " + chatBot.taskList.size() + " task(s)!");;
             }
         },
         EVENT {
             @Override
             public void execute(ChatBot chatBot, String message) {
-                chatBot.padMessage("Added new Event task: ");
                 String taskName = message.substring(0, message.indexOf("/"));
                 String from = message.substring(message.indexOf("/from") + 6,
                         message.lastIndexOf("/") - 1);
                 String to = message.substring(message.lastIndexOf("/") + 4);
                 Task t = new Event(taskName, from, to);
                 chatBot.taskList.add(t);
-                chatBot.padMessage("Added new Event task: \n" + t.toString()
+                chatBot.padMessage("Added new Event task:\n" + t.toString()
                         + "\nNow you have " + chatBot.taskList.size() + " task(s)!");
             }
         };
@@ -92,7 +90,7 @@ public class ChatBot {
     public void listen() {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            System.out.print(">> ");
+            System.err.print(">> ");
             // Get user input
             String input = sc.nextLine();
             Command command = null;
