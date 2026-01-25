@@ -24,6 +24,7 @@ public class ChatBot {
     }
 
     private final ArrayList<Task> taskList = new ArrayList<>(100);
+    private boolean isRunning = true;
 
     public void start() {
         this.padMessage("Meow! I'm Ginger!\nWhat can I do for you?");
@@ -31,12 +32,12 @@ public class ChatBot {
 
     public void stop() {
         this.padMessage("Bye! Hope to see you again soon!");
-        System.exit(0);
+        this.isRunning = false;
     }
 
     public void listen() throws GingerException {
         Scanner sc = new Scanner(System.in);
-        while (true) {
+        while (isRunning) {
             try {
                 // Get user input
                 String[] input = sc.nextLine().split(" ", 2);
