@@ -78,13 +78,11 @@ public class ChatBot {
         Task t = this.taskList.get(index);
         if (b) {
             t.setDone();
-        } else {
-            t.setUnDone();
-        }
-        ChatBot.addDashes();
-        if (b) {
+            ChatBot.addDashes();
             System.out.println("I have meowked this task for completion!");
         } else {
+            t.setUnDone();
+            ChatBot.addDashes();
             System.out.println("Okay, I have unmeowked this task!");
         }
         System.out.println(t.toString());
