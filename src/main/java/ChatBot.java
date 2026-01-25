@@ -84,7 +84,7 @@ public class ChatBot {
         try {
             index = Integer.parseInt(data) - 1;
         } catch (NumberFormatException e) {
-            throw new GingerException("Meow! That's not a number!", e);
+            throw new GingerException("Meow! That's not a number!");
         }
 
         if (index < 0 || index >= this.taskList.size()) {
