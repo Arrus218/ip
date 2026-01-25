@@ -69,21 +69,25 @@ public class ChatBot {
         for (int i = 0; i < this.taskList.size(); i++) {
             int index = i + 1;
             Task t = this.taskList.get(i);
-            System.out.println(index + ". " + "[" + t.getStatusIcon() + "] " + t.getDescription());
+            System.out.println(index + ". " + t.toString());
         }
         ChatBot.addDashes();
     }
 
     private void setTaskCompletion(int index, boolean b) {
         Task t = this.taskList.get(index);
-        t.setDone(b);
+        if (b) {
+            t.setDone();
+        } else {
+            t.setUnDone();
+        }
         ChatBot.addDashes();
         if (b) {
             System.out.println("I have meowked this task for completion!");
         } else {
             System.out.println("Okay, I have unmeowked this task!");
         }
-        System.out.println("[" + t.getStatusIcon() + "] " + t.getDescription());
+        System.out.println(t.toString());
         ChatBot.addDashes();
     }
 
