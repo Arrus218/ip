@@ -1,5 +1,8 @@
-todo test
+todo testtodo
+blahblah
 deadline testdeadline /by Friday
+event /from 2pm
+event /from 2pm /to 5pm
 event testevent /from 2pm /to 5pm
 list
 mark 1

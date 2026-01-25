@@ -1,70 +1,18 @@
+import org.ietf.jgss.GSSName;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ChatBot {
     public enum Command {
-        BYE {
-            @Override
-            public void execute(ChatBot chatBot, String message) {
-                chatBot.stop();
-                // Show generic exit message
-            };
-        },
-        LIST {
-            @Override
-            public void execute(ChatBot chatBot, String message) {
-                chatBot.listTasks();
-            }
-        },
-        MARK {
-            @Override
-            public void execute(ChatBot chatBot, String message) {
-                int index = Integer.parseInt(message.substring(message.indexOf(" ") + 1));
-                chatBot.setTaskCompletion(index - 1, true);
-            }
-        },
-        UNMARK {
-            @Override
-            public void execute(ChatBot chatBot, String message) {
-                int index = Integer.parseInt(message.substring(message.indexOf(" ") + 1));
-                chatBot.setTaskCompletion(index - 1, false);
-            }
-        },
-        TODO {
-            @Override
-            public void execute(ChatBot chatBot, String message) {
-                Task t = new ToDo(message);
-                chatBot.taskList.add(t);
-                chatBot.padMessage("Added new ToDo task:\n" + t.toString()
-                        + "\nNow you have " + chatBot.taskList.size() + " task(s)!");;
-            }
-        },
-        DEADLINE {
-            @Override
-            public void execute(ChatBot chatBot, String message) {
-                String taskName = message.substring(0, message.indexOf("/"));
-                String by = message.substring(message.indexOf("/by") + 4);
-                Task t = new Deadline(taskName, by);
-                chatBot.taskList.add(t);
-                chatBot.padMessage("Added new Deadline task:\n" + t.toString()
-                        + "\nNow you have " + chatBot.taskList.size() + " task(s)!");;
-            }
-        },
-        EVENT {
-            @Override
-            public void execute(ChatBot chatBot, String message) {
-                String taskName = message.substring(0, message.indexOf("/"));
-                String from = message.substring(message.indexOf("/from") + 6,
-                        message.lastIndexOf("/") - 1);
-                String to = message.substring(message.lastIndexOf("/") + 4);
-                Task t = new Event(taskName, from, to);
-                chatBot.taskList.add(t);
-                chatBot.padMessage("Added new Event task:\n" + t.toString()
-                        + "\nNow you have " + chatBot.taskList.size() + " task(s)!");
-            }
-        };
-
-        public abstract void execute(ChatBot chatBot, String message);
+        BYE,
+        LIST,
+        MARK,
+        UNMARK,
+        TODO,
+        DEADLINE,
+        EVENT,
+        UNKNOWN;
 
         public static Command fromString(String s) {
             for (Command c : Command.values()) {
@@ -72,7 +20,7 @@ public class ChatBot {
                     return c;
                 }
             }
-            return null; // No match found
+            return UNKNOWN; // No match found
         }
     }
 
@@ -87,34 +35,34 @@ public class ChatBot {
         System.exit(0);
     }
 
-    public void listen() {
+    public void listen() throws GingerException {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            System.err.print(">> ");
-            // Get user input
-            String input = sc.nextLine();
-            Command command = null;
-            String message = "";
-            if (!input.contains(" ")) {
-                 command = Command.fromString(input);
-            } else {
-                 command = Command.fromString(input.substring(0, input.indexOf(" ")));
-                 message = input.substring(input.indexOf(" ") + 1);
-            }
+            try {
+                // Get user input
+                String[] input = sc.nextLine().split(" ", 2);
+                Command command = Command.fromString(input[0]);
+                String data = input.length > 1 ? input[1] : "";
 
-            // Check if null
-            if (command != null) {
-                command.execute(ChatBot.this, message);
-            } else {
-                this.padMessage("Command not found");
+                switch (command) {
+                    case BYE -> this.stop();
+                    case LIST -> this.listTasks();
+                    case MARK -> this.handleMark(data);
+                    case UNMARK -> this.handleUnmark(data);
+                    case TODO -> this.handleToDo(data);
+                    case DEADLINE -> this.handleDeadline(data);
+                    case EVENT -> this.handleEvent(data);
+                    case UNKNOWN -> throw new GingerException("Sorry, I don't know this command!");
+                }
+            } catch (GingerException e) {
+                this.padMessage(e.getMessage());
             }
         }
     }
 
-    private void listTasks() {
-        if (this.taskList.isEmpty()) {
-            this.padMessage("No tasks found!");
-            return;
+    private void listTasks() throws GingerException{
+        if (this.getNumberOfTasks() == 0) {
+            throw new GingerException("No tasks found in tasklist!");
         }
         ChatBot.addDashes();
         for (int i = 0; i < this.taskList.size(); i++) {
@@ -125,19 +73,91 @@ public class ChatBot {
         ChatBot.addDashes();
     }
 
-    private void setTaskCompletion(int index, boolean b) {
-        Task t = this.taskList.get(index);
-        if (b) {
-            t.setDone();
-            ChatBot.addDashes();
-            System.out.println("I have meowked this task for completion!");
-        } else {
-            t.setUnDone();
-            ChatBot.addDashes();
-            System.out.println("Okay, I have unmeowked this task!");
+    private Task getTaskFromIndex(String data) throws GingerException {
+        if (data.isBlank()) {
+            throw new GingerException("No number provided!");
         }
-        System.out.println(t.toString());
-        ChatBot.addDashes();
+        try {
+            int index = Integer.parseInt(data) - 1;
+            return this.taskList.get(index);
+        } catch (NumberFormatException e) {
+            throw new GingerException("Meow! That's not a number!");
+        } catch (IndexOutOfBoundsException e) {
+            throw new GingerException("Meow! That task is not in my list!");
+        }
+    }
+
+    private void handleMark(String data) throws GingerException {
+        Task t = getTaskFromIndex(data);
+        t.setDone();
+        this.padMessage("Yay! I have meowked this task for you!\n" + t.toString());
+    }
+
+    private void handleUnmark(String data) throws GingerException {
+        Task t = getTaskFromIndex(data);
+        t.setUnDone();
+        this.padMessage("Okay, I have unmeowked this task!\n" + t.toString());
+    }
+
+    private void handleToDo(String data) throws GingerException {
+        if (data.isBlank()) {
+            throw new GingerException("ToDo description not provided, meow!");
+        }
+        Task t = new ToDo(data);
+        this.addTask(t);
+    }
+
+    private void handleDeadline(String data) throws GingerException {
+        int byIndex = data.indexOf("/by");
+        if (byIndex == -1) {
+            throw new GingerException("I need a /by date for deadlines, meow!");
+        }
+
+        String taskName = data.substring(0, byIndex).trim();
+        String by = data.substring(byIndex + 3).trim(); // +3 to skip "/by"
+        if (taskName.isBlank()) {
+            throw new GingerException("Deadline description not provided, meow!");
+        } else if (by.isBlank()) {
+            throw new GingerException("Task deadline not provided, meow!");
+        }
+
+        Task t = new Deadline(taskName, by);
+        this.addTask(t);
+    }
+
+    private void handleEvent(String data) throws GingerException {
+        int fromIndex =  data.indexOf("/from");
+        int toIndex =  data.indexOf("/to");
+
+        if (fromIndex == -1) {
+            throw new GingerException("I need a /from date or time, meow!");
+        } else if (toIndex == -1) {
+            throw new GingerException("I need a /to date or time, meow!");
+        }
+
+        String taskName = data.substring(0, fromIndex).trim();
+        String from = data.substring(fromIndex + 6, toIndex).trim();
+        String to = data.substring(toIndex + 4);
+        if (taskName.isBlank()) {
+            throw new GingerException("Event description not provided, meow!");
+        } else if (from.isBlank()) {
+            throw new GingerException("Event start time not provided, meow!");
+        } else if (to.isBlank()) {
+            throw new GingerException("Event end time not provided, meow!");
+        }
+
+        Task t = new Event(taskName, from, to);
+        this.addTask(t);
+    }
+
+    private void addTask(Task t) {
+        this.taskList.add(t);
+        this.padMessage("Added new task:\n" + t.toString()
+                + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");;
+    }
+
+    private int getNumberOfTasks() {
+        return this.taskList.size();
     }
 
     private void padMessage(String s) {
