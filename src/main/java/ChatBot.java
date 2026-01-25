@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+@SuppressWarnings("ALL")
 public class ChatBot {
     public enum Command {
         BYE,
@@ -35,7 +36,7 @@ public class ChatBot {
         this.isRunning = false;
     }
 
-    public void listen() throws GingerException {
+    public void listen() {
         Scanner sc = new Scanner(System.in);
         while (isRunning) {
             try {
@@ -61,7 +62,7 @@ public class ChatBot {
         }
     }
 
-    private void listTasks() throws GingerException{
+    private void listTasks() throws GingerException {
         if (this.getNumberOfTasks() == 0) {
             throw new GingerException("No tasks found in tasklist!");
         }
@@ -131,8 +132,8 @@ public class ChatBot {
     }
 
     private void handleEvent(String data) throws GingerException {
-        int fromIndex =  data.indexOf("/from");
-        int toIndex =  data.indexOf("/to");
+        int fromIndex = data.indexOf("/from");
+        int toIndex = data.indexOf("/to");
 
         if (fromIndex == -1) {
             throw new GingerException("I need a /from date or time, meow!");
@@ -158,14 +159,14 @@ public class ChatBot {
     private void addTask(Task t) {
         this.taskList.add(t);
         this.padMessage("Added new task:\n" + t.toString()
-                + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");;
+                + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
     }
 
     private void deleteTask(String data) throws GingerException {
         Task t = this.getTaskFromIndex(data);
         this.taskList.remove(t);
         this.padMessage("Removed task:\n" + t.toString()
-                + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");;
+                + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
     }
 
     private int getNumberOfTasks() {
