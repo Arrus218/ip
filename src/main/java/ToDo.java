@@ -3,5 +3,8 @@ public class ToDo extends Task {
         super(description);
     }
 
+    public String getTaskIcon() {
+        return "[T]";
+    }
 
 }

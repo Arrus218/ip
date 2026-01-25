@@ -58,7 +58,7 @@ public class ChatBot {
                 }
             } else {
                 this.padMessage("Added: " + input);
-                this.taskList.add(new Task(input));
+                this.taskList.add(new ToDo(input));
             }
 
         }
