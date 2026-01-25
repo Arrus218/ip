@@ -1,5 +1,3 @@
-import org.ietf.jgss.GSSName;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,6 +10,7 @@ public class ChatBot {
         TODO,
         DEADLINE,
         EVENT,
+        DELETE,
         UNKNOWN;
 
         public static Command fromString(String s) {
@@ -52,6 +51,7 @@ public class ChatBot {
                     case TODO -> this.handleToDo(data);
                     case DEADLINE -> this.handleDeadline(data);
                     case EVENT -> this.handleEvent(data);
+                    case DELETE -> this.deleteTask(data);
                     case UNKNOWN -> throw new GingerException("Sorry, I don't know this command!");
                 }
             } catch (GingerException e) {
@@ -153,6 +153,13 @@ public class ChatBot {
     private void addTask(Task t) {
         this.taskList.add(t);
         this.padMessage("Added new task:\n" + t.toString()
+                + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");;
+    }
+
+    private void deleteTask(String data) throws GingerException {
+        Task t = this.getTaskFromIndex(data);
+        this.taskList.remove(t);
+        this.padMessage("Removed task:\n" + t.toString()
                 + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");;
     }
 
