@@ -20,14 +20,14 @@ public class ChatBot {
             @Override
             public void execute(ChatBot chatBot, String message) {
                 int index = Integer.parseInt(message.substring(message.indexOf(" ") + 1));
-                chatBot.setTaskCompletion(index, true);
+                chatBot.setTaskCompletion(index - 1, true);
             }
         },
         UNMARK {
             @Override
             public void execute(ChatBot chatBot, String message) {
                 int index = Integer.parseInt(message.substring(message.indexOf(" ") + 1));
-                chatBot.setTaskCompletion(index, false);
+                chatBot.setTaskCompletion(index - 1, false);
             }
         },
         TODO {
