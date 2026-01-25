@@ -3,10 +3,33 @@ import java.util.Scanner;
 
 public class ChatBot {
     public enum Command {
-        BYE,
-        LIST,
-        MARK,
-        UNMARK;
+        BYE {
+            @Override
+            public void execute(ChatBot chatBot, int index) {
+                chatBot.stop();
+                // Show generic exit message
+            };
+        },
+        LIST {
+            @Override
+            public void execute(ChatBot chatBot, int index) {
+                chatBot.listTasks();
+            }
+        },
+        MARK {
+            @Override
+            public void execute(ChatBot chatBot, int index) {
+                chatBot.setTaskCompletion(index, true);
+            }
+        },
+        UNMARK {
+            @Override
+            public void execute(ChatBot chatBot, int index) {
+                chatBot.setTaskCompletion(index, false);
+            }
+        };
+
+        public abstract void execute(ChatBot chatBot, int index);
 
         public static Command fromString(String s) {
             for (Command c : Command.values()) {
@@ -26,6 +49,7 @@ public class ChatBot {
 
     public void stop() {
         this.padMessage("Bye! Hope to see you again soon!");
+        System.exit(0);
     }
 
     public void listen() {
@@ -34,37 +58,31 @@ public class ChatBot {
             System.out.print(">> ");
             // Get user input
             String input = sc.nextLine();
-            String cmdWord = (!input.contains(" ")) ? input : input.substring(0, input.indexOf(" "));
-            Command command = Command.fromString(cmdWord);
+            int index = 0;
+            Command command = null;
+
+            if (!input.contains(" ")) {
+                 command = Command.fromString(input);
+            } else {
+                 command = Command.fromString(input.substring(0, input.indexOf(" ")));
+                 index = Integer.parseInt(input.substring(input.indexOf(" ") + 1));
+            }
+
             // Check if null
             if (command != null) {
-                switch (command) {
-                    case BYE:
-                        this.stop(); // Show generic exit message
-                        break; // Quit while loop
-                    case LIST:
-                        this.listTasks();
-                        continue;
-                    case MARK: {
-                        int index = Integer.parseInt(input.substring(input.indexOf(" ") + 1)) - 1;
-                        this.setTaskCompletion(index, true);
-                        continue;
-                    }
-                    case UNMARK: {
-                        int index = Integer.parseInt(input.substring(input.indexOf(" ") + 1)) - 1;
-                        this.setTaskCompletion(index, false);
-                        continue;
-                    }
-                }
+                command.execute(ChatBot.this, index);
             } else {
                 this.padMessage("Added: " + input);
                 this.taskList.add(new ToDo(input));
             }
-
         }
     }
 
     private void listTasks() {
+        if (this.taskList.isEmpty()) {
+            this.padMessage("No tasks found!");
+            return;
+        }
         ChatBot.addDashes();
         for (int i = 0; i < this.taskList.size(); i++) {
             int index = i + 1;
