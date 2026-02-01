@@ -1,7 +1,10 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-@SuppressWarnings("ALL")
 public class ChatBot {
     public enum Command {
         BYE,
@@ -167,6 +170,12 @@ public class ChatBot {
         this.taskList.remove(t);
         this.padMessage("Removed task:\n" + t.toString()
                 + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
+    }
+
+    private void writeToFile() throws IOException {
+        Path path = Paths.get("./data/Ginger.txt");
+        Files.createDirectories(path.getParent());
+        Files.write(path, taskList.stream().map(Task::toString).toList());
     }
 
     private int getNumberOfTasks() {
