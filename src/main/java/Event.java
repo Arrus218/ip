@@ -13,6 +13,10 @@ public class Event extends Task {
         return "[E]";
     }
 
+    public String getTaskType() {
+        return "Event";
+    }
+
     @Override
     public String toString() {
         return this.getTaskIcon() + super.toString() + " (from: " + this.from + " to: " + this.to + ")";

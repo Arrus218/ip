@@ -8,12 +8,18 @@ public abstract class Task {
     }
 
     public String getStatusIcon() {
-        if (this.isDone) {
+        if (this.getStatus()) {
             return "[X] ";
         } else {
             return "[ ] "; // mark done task with X, undone empty
         }
     }
+
+    public boolean getStatus() {
+        return this.isDone;
+    }
+
+    public abstract String getTaskType();
 
     public abstract String getTaskIcon();
 

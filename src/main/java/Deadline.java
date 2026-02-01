@@ -11,6 +11,10 @@ public class Deadline extends Task {
         return "[D]";
     }
 
+    public String getTaskType() {
+        return "Deadline";
+    }
+
     @Override
     public String toString() {
         return this.getTaskIcon() + super.toString() + " (by: " + this.by + ")";
