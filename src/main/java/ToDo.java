@@ -3,8 +3,22 @@ public class ToDo extends Task {
         super(description);
     }
 
+    public ToDo(String description, boolean isDone) {
+        super(description);
+        this.isDone = isDone;
+    }
+
     public String getTaskIcon() {
         return "[T]";
+    }
+
+    public String getTaskType() {
+        return "ToDo";
+    }
+
+    @Override
+    public String toFileString() {
+        return this.getTaskType() + "|" + super.toFileString();
     }
 
     @Override

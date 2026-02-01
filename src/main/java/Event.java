@@ -9,8 +9,32 @@ public class Event extends Task {
         this.to = to;
     }
 
+    public Event(String description, boolean isDone, String from, String to) {
+        super(description);
+        this.isDone = isDone;
+        this.from = from;
+        this.to = to;
+    }
+
     public String getTaskIcon() {
         return "[E]";
+    }
+
+    public String getTaskType() {
+        return "Event";
+    }
+
+    public String getFrom() {
+        return this.from;
+    }
+
+    public String getTo() {
+        return this.to;
+    }
+
+    @Override
+    public String toFileString() {
+        return this.getTaskType() + "|" + super.toFileString() + "|" + this.from + "|" + this.to;
     }
 
     @Override

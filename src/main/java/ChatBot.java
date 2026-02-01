@@ -1,7 +1,11 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-@SuppressWarnings("ALL")
 public class ChatBot {
     public enum Command {
         BYE,
@@ -28,11 +32,16 @@ public class ChatBot {
     private boolean isRunning = true;
 
     public void start() {
-        this.padMessage("Meow! I'm Ginger!\nWhat can I do for you?");
+        ChatBot.padMessage("Meow! I'm Ginger!\nWhat can I do for you?");
+        try {
+            this.readFromFile();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     public void stop() {
-        this.padMessage("Bye! Hope to see you again soon!");
+        ChatBot.padMessage("Bye! Hope to see you again soon!");
         this.isRunning = false;
     }
 
@@ -57,7 +66,7 @@ public class ChatBot {
                     case UNKNOWN -> throw new GingerException("Sorry, I don't know this command!");
                 }
             } catch (GingerException e) {
-                this.padMessage(e.getMessage());
+                ChatBot.padMessage(e.getMessage());
             }
         }
     }
@@ -96,13 +105,13 @@ public class ChatBot {
     private void handleMark(String data) throws GingerException {
         Task t = getTaskFromIndex(data);
         t.setDone();
-        this.padMessage("Yay! I have meowked this task for you!\n" + t.toString());
+        ChatBot.padMessage("Yay! I have meowked this task for you!\n" + t.toString());
     }
 
     private void handleUnmark(String data) throws GingerException {
         Task t = getTaskFromIndex(data);
         t.setUnDone();
-        this.padMessage("Okay, I have unmeowked this task!\n" + t.toString());
+        ChatBot.padMessage("Okay, I have unmeowked this task!\n" + t.toString());
     }
 
     private void handleToDo(String data) throws GingerException {
@@ -158,22 +167,53 @@ public class ChatBot {
 
     private void addTask(Task t) {
         this.taskList.add(t);
-        this.padMessage("Added new task:\n" + t.toString()
+        ChatBot.padMessage("Added new task:\n" + t.toString()
                 + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
+        try {
+            this.writeToFile();
+        } catch (IOException e) {
+            ChatBot.padMessage("Error writing to file!");
+        }
     }
 
     private void deleteTask(String data) throws GingerException {
         Task t = this.getTaskFromIndex(data);
         this.taskList.remove(t);
-        this.padMessage("Removed task:\n" + t.toString()
+        ChatBot.padMessage("Removed task:\n" + t.toString()
                 + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
+        try {
+            this.writeToFile();
+        } catch (IOException e) {
+            ChatBot.padMessage("Error writing to file!");
+        }
+    }
+
+    private void writeToFile() throws IOException {
+        Path path = Paths.get("./data/Ginger.txt");
+        Files.createDirectories(path.getParent());
+        Files.write(path, taskList.stream().map(Task::toFileString).toList());
+    }
+
+    private void readFromFile() throws IOException {
+        Path path = Paths.get("./data/Ginger.txt");
+        if (Files.notExists(path)) return;
+
+        List<String> lines = Files.readAllLines(path);
+        for (String line : lines) {
+            try {
+                Task task = Task.fromFileString(line);
+                taskList.add(task);
+            } catch (GingerException e) {
+                System.err.println(e.getMessage());
+            }
+        }
     }
 
     private int getNumberOfTasks() {
         return this.taskList.size();
     }
 
-    private void padMessage(String s) {
+    private static void padMessage(String s) {
         ChatBot.addDashes();
         System.out.println(s);
         ChatBot.addDashes();

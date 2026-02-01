@@ -7,8 +7,27 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    public Deadline(String description, boolean isDone, String by) {
+        super(description);
+        this.isDone = isDone;
+        this.by = by;
+    }
+
     public String getTaskIcon() {
         return "[D]";
+    }
+
+    public String getTaskType() {
+        return "Deadline";
+    }
+
+    public String getBy() {
+        return this.by;
+    }
+
+    @Override
+    public String toFileString() {
+        return this.getTaskType() + "|" + super.toFileString() + "|" + this.by;
     }
 
     @Override
