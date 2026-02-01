@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ChatBot {
@@ -27,11 +28,16 @@ public class ChatBot {
         }
     }
 
-    private ArrayList<Task> taskList = new ArrayList<>(100);
+    private final ArrayList<Task> taskList = new ArrayList<>(100);
     private boolean isRunning = true;
 
     public void start() {
         ChatBot.padMessage("Meow! I'm Ginger!\nWhat can I do for you?");
+        try {
+            this.readFromFile();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     public void stop() {
@@ -185,12 +191,22 @@ public class ChatBot {
     private void writeToFile() throws IOException {
         Path path = Paths.get("./data/Ginger.txt");
         Files.createDirectories(path.getParent());
-        Files.write(path, taskList.stream().map(Task::toString).toList());
+        Files.write(path, taskList.stream().map(Task::toFileString).toList());
     }
 
     private void readFromFile() throws IOException {
         Path path = Paths.get("./data/Ginger.txt");
-        Files.createDirectories(path.getParent());
+        if (Files.notExists(path)) return;
+
+        List<String> lines = Files.readAllLines(path);
+        for (String line : lines) {
+            try {
+                Task task = Task.fromFileString(line);
+                taskList.add(task);
+            } catch (GingerException e) {
+                System.err.println(e.getMessage());
+            }
+        }
     }
 
     private int getNumberOfTasks() {

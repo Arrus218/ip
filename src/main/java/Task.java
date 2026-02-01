@@ -1,3 +1,5 @@
+import java.nio.file.Files;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -5,6 +7,29 @@ public abstract class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+    }
+
+    public static Task fromFileString(String line) throws GingerException {
+        String[] parts = line.split("\\|");
+        if (parts.length < 3) {
+            throw new GingerException("Corrupted line (missing parameters): " + line);
+        }
+        String type = parts[0];
+        String desc = parts[1];
+        boolean isDone = Boolean.parseBoolean(parts[2]);
+
+        switch (type) {
+            case "ToDo":
+                return new ToDo(desc, isDone);
+            case "Deadline":
+                // parts[3] is /by
+                return new Deadline(desc, isDone, parts[3]);
+            case "Event":
+                // parts[3] and [4] are '/from' and '/to'
+                return new Event(desc, isDone, parts[3], parts[4]);
+            default:
+                throw new GingerException("Unknown task type in file: " + type);
+        }
     }
 
     public String getStatusIcon() {
