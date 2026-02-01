@@ -31,11 +31,11 @@ public class ChatBot {
     private boolean isRunning = true;
 
     public void start() {
-        this.padMessage("Meow! I'm Ginger!\nWhat can I do for you?");
+        ChatBot.padMessage("Meow! I'm Ginger!\nWhat can I do for you?");
     }
 
     public void stop() {
-        this.padMessage("Bye! Hope to see you again soon!");
+        ChatBot.padMessage("Bye! Hope to see you again soon!");
         this.isRunning = false;
     }
 
@@ -60,7 +60,7 @@ public class ChatBot {
                     case UNKNOWN -> throw new GingerException("Sorry, I don't know this command!");
                 }
             } catch (GingerException e) {
-                this.padMessage(e.getMessage());
+                ChatBot.padMessage(e.getMessage());
             }
         }
     }
@@ -99,13 +99,13 @@ public class ChatBot {
     private void handleMark(String data) throws GingerException {
         Task t = getTaskFromIndex(data);
         t.setDone();
-        this.padMessage("Yay! I have meowked this task for you!\n" + t.toString());
+        ChatBot.padMessage("Yay! I have meowked this task for you!\n" + t.toString());
     }
 
     private void handleUnmark(String data) throws GingerException {
         Task t = getTaskFromIndex(data);
         t.setUnDone();
-        this.padMessage("Okay, I have unmeowked this task!\n" + t.toString());
+        ChatBot.padMessage("Okay, I have unmeowked this task!\n" + t.toString());
     }
 
     private void handleToDo(String data) throws GingerException {
@@ -161,15 +161,25 @@ public class ChatBot {
 
     private void addTask(Task t) {
         this.taskList.add(t);
-        this.padMessage("Added new task:\n" + t.toString()
+        ChatBot.padMessage("Added new task:\n" + t.toString()
                 + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
+        try {
+            this.writeToFile();
+        } catch (IOException e) {
+            ChatBot.padMessage("Error writing to file!");
+        }
     }
 
     private void deleteTask(String data) throws GingerException {
         Task t = this.getTaskFromIndex(data);
         this.taskList.remove(t);
-        this.padMessage("Removed task:\n" + t.toString()
+        ChatBot.padMessage("Removed task:\n" + t.toString()
                 + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
+        try {
+            this.writeToFile();
+        } catch (IOException e) {
+            System.out.println("Error writing to file!");
+        }
     }
 
     private void writeToFile() throws IOException {
@@ -187,7 +197,7 @@ public class ChatBot {
         return this.taskList.size();
     }
 
-    private void padMessage(String s) {
+    private static void padMessage(String s) {
         ChatBot.addDashes();
         System.out.println(s);
         ChatBot.addDashes();
