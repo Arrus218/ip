@@ -15,6 +15,15 @@ public class Deadline extends Task {
         return "Deadline";
     }
 
+    public String getBy() {
+        return this.by;
+    }
+
+    @Override
+    public String toFileString() {
+        return this.getTaskType() + "|" + super.toFileString() + "|" + this.by;
+    }
+
     @Override
     public String toString() {
         return this.getTaskIcon() + super.toString() + " (by: " + this.by + ")";

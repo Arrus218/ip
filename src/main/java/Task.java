@@ -23,6 +23,10 @@ public abstract class Task {
 
     public abstract String getTaskIcon();
 
+    private String getDescription() {
+        return this.description;
+    }
+
     public void setDone() {
         this.isDone = true;
     }
@@ -31,9 +35,12 @@ public abstract class Task {
         this.isDone = false;
     }
 
-    @Override
-    public String toString() {
-        return this.getStatusIcon() + this.description;
+    public String toFileString() {
+        return this.getDescription() + "|" + this.getStatus();
     }
 
+    @Override
+    public String toString() {
+        return this.getStatusIcon() + this.getDescription();
+    }
 }

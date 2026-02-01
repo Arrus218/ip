@@ -17,6 +17,19 @@ public class Event extends Task {
         return "Event";
     }
 
+    public String getFrom() {
+        return this.from;
+    }
+
+    public String getTo() {
+        return this.to;
+    }
+
+    @Override
+    public String toFileString() {
+        return this.getTaskType() + "|" + super.toFileString() + "|" + this.from + "|" + this.to;
+    }
+
     @Override
     public String toString() {
         return this.getTaskIcon() + super.toString() + " (from: " + this.from + " to: " + this.to + ")";

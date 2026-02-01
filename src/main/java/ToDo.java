@@ -12,6 +12,11 @@ public class ToDo extends Task {
     }
 
     @Override
+    public String toFileString() {
+        return this.getTaskType() + "|" + super.toFileString();
+    }
+
+    @Override
     public String toString() {
         return this.getTaskIcon() + super.toString();
     }
