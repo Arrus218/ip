@@ -178,7 +178,7 @@ public class ChatBot {
         try {
             this.writeToFile();
         } catch (IOException e) {
-            System.out.println("Error writing to file!");
+            ChatBot.padMessage("Error writing to file!");
         }
     }
 
