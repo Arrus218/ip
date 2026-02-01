@@ -27,7 +27,7 @@ public class ChatBot {
         }
     }
 
-    private final ArrayList<Task> taskList = new ArrayList<>(100);
+    private ArrayList<Task> taskList = new ArrayList<>(100);
     private boolean isRunning = true;
 
     public void start() {
@@ -176,6 +176,11 @@ public class ChatBot {
         Path path = Paths.get("./data/Ginger.txt");
         Files.createDirectories(path.getParent());
         Files.write(path, taskList.stream().map(Task::toString).toList());
+    }
+
+    private void readFromFile() throws IOException {
+        Path path = Paths.get("./data/Ginger.txt");
+        Files.createDirectories(path.getParent());
     }
 
     private int getNumberOfTasks() {
