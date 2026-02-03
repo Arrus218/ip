@@ -1,0 +1,20 @@
+public class DeadlineCommand extends AddCommand {
+    private String description;
+    private String by;
+
+    public DeadlineCommand(String description, String by) {
+        this.description = description;
+        this.by = by;
+    }
+
+    @Override
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
+        Task t = new Deadline(this.description, this.by);
+        super.onExecute(t, tasks, ui, storage);
+    }
+
+    @Override
+    public boolean isExit() {
+        return super.isExit();
+    }
+}
