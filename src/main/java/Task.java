@@ -54,7 +54,7 @@ public abstract class Task {
         this.isDone = true;
     }
 
-    public void setUnDone() {
+    public void setUndone() {
         this.isDone = false;
     }
 

@@ -107,7 +107,7 @@ public class Ui {
 
     private void handleUnmark(String data) throws GingerException {
         Task t = this.taskList.get(this.getIndex(data));
-        t.setUnDone();
+        t.setUndone();
         Ui.padMessage("Okay, I have unmeowked this task!\n" + t.toString());
     }
 
