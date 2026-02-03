@@ -6,7 +6,7 @@ public class TodoCommand extends AddCommand {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
-        Task t = new Todo(this.description);
+        Task t = new Todo(super.description);
         super.onExecute(t, tasks, ui, storage);
     }
 }

@@ -10,7 +10,7 @@ public class EventCommand extends AddCommand {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
-        Task t = new Event(this.description, this.from, this.to);
+        Task t = new Event(super.description, this.from, this.to);
         super.onExecute(t, tasks, ui, storage);
     }
 }

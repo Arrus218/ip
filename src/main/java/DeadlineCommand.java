@@ -8,7 +8,7 @@ public class DeadlineCommand extends AddCommand {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
-        Task t = new Deadline(this.description, this.by);
+        Task t = new Deadline(super.description, this.by);
         super.onExecute(t, tasks, ui, storage);
     }
 }
