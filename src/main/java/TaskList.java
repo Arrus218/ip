@@ -17,8 +17,12 @@ public class TaskList {
         this.tasks.add(t);
     }
 
-    public void deleteTask(int index) throws GingerException {
-        this.tasks.remove(index);
+    public void deleteTask(Task t) throws GingerException {
+        this.tasks.remove(t);
+    }
+
+    public Task getTask(int index) {
+        return this.tasks.get(index);
     }
 
     public int size() {
