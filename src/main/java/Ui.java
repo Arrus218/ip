@@ -204,6 +204,10 @@ public class Ui {
                 + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
     }
 
+    public void showDeletedTask(Task t, int length) {
+        Ui.padMessage("Removed task:\n" + t.toString()
+                + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
+    }
     public static void addDashes() {
         System.out.println("------------------------------------------------");
     }
