@@ -1,8 +1,7 @@
-public class DeleteCommand extends Command {
-    private int index;
+public class DeleteCommand extends IndexCommand {
 
     public DeleteCommand(int index) {
-        this.index = index;
+        super(index);
     }
 
     @Override

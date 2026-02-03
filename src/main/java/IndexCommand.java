@@ -1,4 +1,11 @@
-package PACKAGE_NAME;
+public abstract class IndexCommand extends Command {
+    protected int index;
 
-public class IndexCommand {
+    public IndexCommand(int index) {
+        this.index = index;
+    }
+
+    protected void onExecute(Task task, TaskList tasks, Ui ui, Storage storage) {
+
+    }
 }
