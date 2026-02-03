@@ -1,9 +1,8 @@
 public class DeadlineCommand extends AddCommand {
-    private String description;
     private String by;
 
     public DeadlineCommand(String description, String by) {
-        this.description = description;
+        super(description);
         this.by = by;
     }
 
