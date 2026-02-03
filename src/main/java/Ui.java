@@ -56,7 +56,7 @@ public class Ui {
                     case LIST -> this.listTasks();
                     case MARK -> this.handleMark(data);
                     case UNMARK -> this.handleUnmark(data);
-                    case TODO -> this.handleToDo(data);
+                    case TODO -> this.handleTodo(data);
                     case DEADLINE -> this.handleDeadline(data);
                     case EVENT -> this.handleEvent(data);
                     case DELETE -> this.deleteTask(data);
@@ -111,11 +111,11 @@ public class Ui {
         Ui.padMessage("Okay, I have unmeowked this task!\n" + t.toString());
     }
 
-    private void handleToDo(String data) throws GingerException {
+    private void handleTodo(String data) throws GingerException {
         if (data.isBlank()) {
-            throw new GingerException("ToDo description not provided, meow!");
+            throw new GingerException("Todo description not provided, meow!");
         }
-        Task t = new ToDo(data);
+        Task t = new Todo(data);
         this.addTask(t);
     }
 
@@ -197,6 +197,11 @@ public class Ui {
 
     public void showGoodbye() {
         Ui.padMessage("Bye! Hope to see you again soon!");
+    }
+
+    public void showAddedTask(Task t) {
+        Ui.padMessage("Added new task:\n" + t.toString()
+                + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
     }
 
     public static void addDashes() {

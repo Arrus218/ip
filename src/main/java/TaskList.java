@@ -13,15 +13,15 @@ public class TaskList {
         this.tasks = new ArrayList<>(tasks);
     }
 
-    private void addTask(Task t) {
+    public void addTask(Task t) {
         this.tasks.add(t);
     }
 
-    private void deleteTask(int index) throws GingerException {
+    public void deleteTask(int index) throws GingerException {
         this.tasks.remove(index);
     }
 
-    private int size() {
+    public int size() {
         return this.tasks.size();
     }
 }

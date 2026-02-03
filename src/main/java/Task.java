@@ -1,5 +1,3 @@
-import java.nio.file.Files;
-
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -19,8 +17,8 @@ public abstract class Task {
         boolean isDone = Boolean.parseBoolean(parts[2]);
 
         switch (type) {
-            case "ToDo":
-                return new ToDo(desc, isDone);
+            case "Todo":
+                return new Todo(desc, isDone);
             case "Deadline":
                 // parts[3] is /by
                 return new Deadline(desc, isDone, parts[3]);
