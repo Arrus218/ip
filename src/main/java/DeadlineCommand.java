@@ -11,9 +11,4 @@ public class DeadlineCommand extends AddCommand {
         Task t = new Deadline(this.description, this.by);
         super.onExecute(t, tasks, ui, storage);
     }
-
-    @Override
-    public boolean isExit() {
-        return super.isExit();
-    }
 }

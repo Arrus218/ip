@@ -13,9 +13,4 @@ public class EventCommand extends AddCommand {
         Task t = new Event(this.description, this.from, this.to);
         super.onExecute(t, tasks, ui, storage);
     }
-
-    @Override
-    public boolean isExit() {
-        return super.isExit();
-    }
 }

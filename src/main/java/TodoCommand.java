@@ -9,9 +9,4 @@ public class TodoCommand extends AddCommand {
         Task t = new Todo(this.description);
         super.onExecute(t, tasks, ui, storage);
     }
-
-    @Override
-    public boolean isExit() {
-        return super.isExit();
-    }
 }
