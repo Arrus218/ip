@@ -217,6 +217,20 @@ public class Ui {
         Ui.padMessage("Okay, I have unmeowked this task!\n" + t.toString());
     }
 
+    public void showAllTasks(TaskList tasks) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < tasks.size(); i++) {
+            int index = i + 1;
+            sb.append(index)
+                    .append(". ")
+                    .append(tasks.getTask(i).toString())
+                    .append("\n");
+        }
+
+        Ui.padMessage(sb + "Total tasks: " + tasks.size());
+    }
+
     public static void addDashes() {
         System.out.println("------------------------------------------------");
     }
