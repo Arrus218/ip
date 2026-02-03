@@ -1,4 +1,4 @@
 public abstract class Command {
-    public abstract void execute(TaskList tasks, Ui chatBot, Storage storage) throws GingerException;
-    public boolean isExit() { return false; }
+    protected abstract void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException;
+    protected boolean isExit() { return false; }
 }
