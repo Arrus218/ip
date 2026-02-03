@@ -20,4 +20,12 @@ public class TaskList {
     private void deleteTask(int index) throws GingerException {
         this.tasks.remove(index);
     }
+
+    private int size() {
+        return this.tasks.size();
+    }
+
+    private ArrayList<Task> getAllTasks() {
+        return this.tasks;
+    }
 }
