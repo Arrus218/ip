@@ -28,13 +28,14 @@ public class ChatBot {
         }
     }
 
-    private final ArrayList<Task> taskList = new ArrayList<>(100);
+    private Storage storage = new Storage("data/Ginger.txt");
+    private ArrayList<Task> taskList = new ArrayList<>(100);
     private boolean isRunning = true;
 
     public void start() {
         ChatBot.padMessage("Meow! I'm Ginger!\nWhat can I do for you?");
         try {
-            this.readFromFile();
+            this.taskList = storage.load();
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
@@ -170,7 +171,7 @@ public class ChatBot {
         ChatBot.padMessage("Added new task:\n" + t.toString()
                 + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
         try {
-            this.writeToFile();
+            storage.save(this.taskList);
         } catch (IOException e) {
             ChatBot.padMessage("Error writing to file!");
         }
@@ -182,7 +183,7 @@ public class ChatBot {
         ChatBot.padMessage("Removed task:\n" + t.toString()
                 + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
         try {
-            this.writeToFile();
+            storage.save(this.taskList);
         } catch (IOException e) {
             ChatBot.padMessage("Error writing to file!");
         }
