@@ -24,8 +24,4 @@ public class TaskList {
     private int size() {
         return this.tasks.size();
     }
-
-    private ArrayList<Task> getAllTasks() {
-        return this.tasks;
-    }
 }
