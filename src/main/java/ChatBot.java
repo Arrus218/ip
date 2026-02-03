@@ -28,7 +28,7 @@ public class ChatBot {
         }
     }
 
-    private Storage storage = new Storage("data/Ginger.txt");
+    private Storage storage = new Storage("./data/Ginger.txt");
     private ArrayList<Task> taskList = new ArrayList<>(100);
     private boolean isRunning = true;
 
@@ -85,7 +85,7 @@ public class ChatBot {
         ChatBot.addDashes();
     }
 
-    private Task getTaskFromIndex(String data) throws GingerException {
+    private int getIndex(String data) throws GingerException {
         if (data.isBlank()) {
             throw new GingerException("No number provided!");
         }
@@ -100,17 +100,17 @@ public class ChatBot {
         if (index < 0 || index >= this.taskList.size()) {
             throw new GingerException("Meow! That task is not in my list!");
         }
-        return this.taskList.get(index);
+        return index;
     }
 
     private void handleMark(String data) throws GingerException {
-        Task t = getTaskFromIndex(data);
+        Task t = this.taskList.get(this.getIndex(data));
         t.setDone();
         ChatBot.padMessage("Yay! I have meowked this task for you!\n" + t.toString());
     }
 
     private void handleUnmark(String data) throws GingerException {
-        Task t = getTaskFromIndex(data);
+        Task t = this.taskList.get(this.getIndex(data));
         t.setUnDone();
         ChatBot.padMessage("Okay, I have unmeowked this task!\n" + t.toString());
     }
@@ -178,7 +178,7 @@ public class ChatBot {
     }
 
     private void deleteTask(String data) throws GingerException {
-        Task t = this.getTaskFromIndex(data);
+        Task t = this.taskList.get(this.getIndex(data));
         this.taskList.remove(t);
         ChatBot.padMessage("Removed task:\n" + t.toString()
                 + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
@@ -189,38 +189,17 @@ public class ChatBot {
         }
     }
 
-    private void writeToFile() throws IOException {
-        Path path = Paths.get("./data/Ginger.txt");
-        Files.createDirectories(path.getParent());
-        Files.write(path, taskList.stream().map(Task::toFileString).toList());
-    }
-
-    private void readFromFile() throws IOException {
-        Path path = Paths.get("./data/Ginger.txt");
-        if (Files.notExists(path)) return;
-
-        List<String> lines = Files.readAllLines(path);
-        for (String line : lines) {
-            try {
-                Task task = Task.fromFileString(line);
-                taskList.add(task);
-            } catch (GingerException e) {
-                System.err.println(e.getMessage());
-            }
-        }
-    }
-
     private int getNumberOfTasks() {
         return this.taskList.size();
     }
 
-    private static void padMessage(String s) {
+    public static void padMessage(String s) {
         ChatBot.addDashes();
         System.out.println(s);
         ChatBot.addDashes();
     }
 
-    private static void addDashes() {
+    public static void addDashes() {
         System.out.println("------------------------------------------------");
     }
 }
