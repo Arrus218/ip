@@ -208,6 +208,15 @@ public class Ui {
         Ui.padMessage("Removed task:\n" + t.toString()
                 + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
     }
+
+    public void showMarkSuccess(Task t) {
+        Ui.padMessage("Yay! I have meowked this task for you!\n" + t.toString());
+    }
+
+    public void showUnmarkSuccess(Task t) {
+        Ui.padMessage("Okay, I have unmeowked this task!\n" + t.toString());
+    }
+
     public static void addDashes() {
         System.out.println("------------------------------------------------");
     }
