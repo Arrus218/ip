@@ -1,12 +1,12 @@
 public class Ginger {
     private Storage storage;
     private TaskList tasks;
-    private ChatBot bot;
+    private Ui bot;
 
     public Ginger(String filePath) {
         this.storage = new Storage(filePath);
         this.tasks = new TaskList();
-        this.bot = new ChatBot();
+        this.bot = new Ui();
     }
 
     public void run() {

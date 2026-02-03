@@ -195,6 +195,10 @@ public class Ui {
         Ui.addDashes();
     }
 
+    public void showGoodbye() {
+        Ui.padMessage("Bye! Hope to see you again soon!");
+    }
+
     public static void addDashes() {
         System.out.println("------------------------------------------------");
     }
