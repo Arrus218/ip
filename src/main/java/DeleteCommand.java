@@ -1,5 +1,4 @@
 public class DeleteCommand extends IndexCommand {
-
     public DeleteCommand(int index) {
         super(index);
     }

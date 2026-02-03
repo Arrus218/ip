@@ -1,5 +1,4 @@
 public class MarkCommand extends IndexCommand {
-
     public MarkCommand(int index) {
         super(index);
     }

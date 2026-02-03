@@ -1,5 +1,4 @@
 public class UnmarkCommand extends IndexCommand {
-
     public UnmarkCommand(int index) {
         super(index);
     }
