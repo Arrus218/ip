@@ -12,7 +12,8 @@ public abstract class IndexCommand extends Command {
         }
     }
 
-    protected void onExecute(Task task, TaskList tasks, Ui ui, Storage storage) {
-
+    @Override
+    protected void onExecute(Task t, TaskList tasks, Ui ui, Storage storage) throws GingerException {
+        storage.save(tasks);
     }
 }

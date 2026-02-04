@@ -5,8 +5,10 @@ public abstract class AddCommand extends Command {
         this.description = description;
     }
 
-    protected void onExecute(Task task, TaskList tasks, Ui ui, Storage storage) {
+    @Override
+    protected void onExecute(Task task, TaskList tasks, Ui ui, Storage storage) throws GingerException {
         tasks.addTask(task);
         ui.showAddedTask(task, tasks.size());
+        storage.save(tasks);
     }
 }

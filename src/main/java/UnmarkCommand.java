@@ -8,6 +8,7 @@ public class UnmarkCommand extends IndexCommand {
         super.execute(tasks, ui, storage);
         Task t = tasks.getTask(super.index);
         t.setUndone();
+        ui.showUnmarkSuccess(t);
         super.onExecute(t, tasks, ui, storage);
     }
 }

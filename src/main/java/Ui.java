@@ -27,7 +27,7 @@ public class Ui {
         this.padMessage("Bye! Hope to see you again soon!");
     }
 
-    public void showError(GingerException e) {this.padMessage(e.getMessage());}
+    public void showError(GingerException e) {System.out.println(e.getMessage());}
 
     public void showAddedTask(Task t, int length) {
         this.padMessage("Added new task:\n" + t.toString()
