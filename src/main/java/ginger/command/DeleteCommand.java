@@ -1,10 +1,18 @@
+package ginger.command;
+
+import ginger.GingerException;
+import ginger.Storage;
+import ginger.Ui;
+import task.Task;
+import task.TaskList;
+
 public class DeleteCommand extends IndexCommand {
     public DeleteCommand(int index) {
         super(index);
     }
 
     @Override
-    protected void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
         super.execute(tasks, ui, storage);
         Task t = tasks.getTask(index);
         tasks.deleteTask(t);

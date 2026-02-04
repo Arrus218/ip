@@ -1,6 +1,14 @@
+package ginger.command;
+
+import ginger.GingerException;
+import ginger.Storage;
+import ginger.Ui;
+import task.Task;
+import task.TaskList;
+
 public class ListCommand extends Command {
     @Override
-    protected void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
         ui.showAllTasks(tasks);
     }
 

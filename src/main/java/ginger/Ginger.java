@@ -1,4 +1,7 @@
-import java.io.IOException;
+package ginger;
+
+import ginger.command.Command;
+import task.TaskList;
 
 public class Ginger {
     private Storage storage;
@@ -35,6 +38,6 @@ public class Ginger {
     }
 
     public static void main(String[] args) {
-        new Ginger("./data/Ginger.txt").run();
+        new Ginger("./src/main/java/ginger/data/Ginger.txt").run();
     }
 }

@@ -1,3 +1,12 @@
+package ginger.command;
+
+import ginger.GingerException;
+import ginger.Storage;
+import ginger.Ui;
+import task.Event;
+import task.Task;
+import task.TaskList;
+
 public class EventCommand extends AddCommand {
     private String from;
     private String to;

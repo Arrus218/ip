@@ -1,3 +1,8 @@
+package ginger;
+
+import task.Task;
+import task.TaskList;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,7 +27,6 @@ public class Storage {
     }
 
     public ArrayList<Task> load() throws GingerException {
-        Path path = Paths.get("./data/Ginger.txt");
         ArrayList<Task> tasks = new ArrayList<>();
 
         try {
@@ -32,7 +36,7 @@ public class Storage {
                     Task task = Task.fromFileString(line);
                     tasks.add(task);
                 } catch (GingerException e) {
-                    System.err.println(e.getMessage());
+                    throw new GingerException("Failed to load task: " + e.getMessage());
                 }
             }
         } catch (IOException e) {

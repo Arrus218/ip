@@ -1,6 +1,6 @@
 Failed to load task list from file.
 ------------------------------------------------
-Meow! I'm Ginger!
+Meow! I'm ginger.Ginger!
 What can I do for you?
 ------------------------------------------------
 ------------------------------------------------
@@ -9,7 +9,7 @@ Added new task:
 Now you have 1 task(s)!
 ------------------------------------------------
 ------------------------------------------------
-I don't know what that command is!
+I don't know what that ginger.command is!
 ------------------------------------------------
 ------------------------------------------------
 Added new task:
@@ -20,7 +20,7 @@ Now you have 2 task(s)!
 I need a /to date or time, meow!
 ------------------------------------------------
 ------------------------------------------------
-Event description not provided, meow!
+task.Event description not provided, meow!
 ------------------------------------------------
 ------------------------------------------------
 Added new task:

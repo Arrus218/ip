@@ -1,3 +1,7 @@
+package task;
+
+import ginger.GingerException;
+
 import java.time.LocalDate;
 
 public abstract class Task {

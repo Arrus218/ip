@@ -1,3 +1,11 @@
+package ginger.command;
+
+import ginger.GingerException;
+import ginger.Storage;
+import ginger.Ui;
+import task.Task;
+import task.TaskList;
+
 public abstract class IndexCommand extends Command {
     protected int index;
 
@@ -6,7 +14,7 @@ public abstract class IndexCommand extends Command {
     }
 
     @Override
-    protected void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
         if (this.index < 0 || this.index >= tasks.size()) {
             throw new GingerException("Meow! That task is not in my list!");
         }
