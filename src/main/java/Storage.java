@@ -12,23 +12,31 @@ public class Storage {
         this.path = Paths.get(filePath);
     }
 
-    public void save(ArrayList<Task> tasks) throws IOException {
-        Files.createDirectories(path.getParent());
-        Files.write(path, tasks.stream().map(Task::toFileString).toList());
+    public void save(TaskList tasks) throws GingerException {
+        try {
+            Files.createDirectories(path.getParent());
+            Files.write(path, tasks.toSaveFormat());
+        } catch (IOException e) {
+            throw new GingerException("Failed to save to file: " + e.getMessage());
+        }
     }
 
-    public ArrayList<Task> load() throws IOException {
+    public TaskList load() throws GingerException {
         Path path = Paths.get("./data/Ginger.txt");
-        ArrayList<Task> tasks = new ArrayList<>(100);
+        TaskList tasks = new TaskList();
 
-        List<String> lines = Files.readAllLines(path);
-        for (String line : lines) {
-            try {
-                Task task = Task.fromFileString(line);
-                tasks.add(task);
-            } catch (GingerException e) {
-                System.err.println(e.getMessage());
+        try {
+            List<String> lines = Files.readAllLines(path);
+            for (String line : lines) {
+                try {
+                    Task task = Task.fromFileString(line);
+                    tasks.addTask(task);
+                } catch (GingerException e) {
+                    System.err.println(e.getMessage());
+                }
             }
+        } catch (IOException e) {
+            throw new GingerException("Failed to load task list from file.");
         }
 
         return tasks;
