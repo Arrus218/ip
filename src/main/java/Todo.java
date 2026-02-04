@@ -1,9 +1,9 @@
-public class ToDo extends Task {
-    public ToDo(String description) {
+public class Todo extends Task {
+    public Todo(String description) {
         super(description);
     }
 
-    public ToDo(String description, boolean isDone) {
+    public Todo(String description, boolean isDone) {
         super(description);
         this.isDone = isDone;
     }
@@ -13,7 +13,7 @@ public class ToDo extends Task {
     }
 
     public String getTaskType() {
-        return "ToDo";
+        return "Todo";
     }
 
     @Override
