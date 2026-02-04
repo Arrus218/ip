@@ -5,6 +5,7 @@ public class DeleteCommand extends IndexCommand {
 
     @Override
     protected void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
+        super.execute(tasks, ui, storage);
         Task t = tasks.getTask(index);
         tasks.deleteTask(t);
         ui.showDeletedTask(t, tasks.size());

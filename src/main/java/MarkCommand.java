@@ -5,6 +5,7 @@ public class MarkCommand extends IndexCommand {
 
     @Override
     protected void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
+        super.execute(tasks, ui, storage);
         Task t = tasks.getTask(super.index);
         t.setDone();
         super.onExecute(t, tasks, ui, storage);
