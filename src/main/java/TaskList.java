@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TaskList {
     private ArrayList<Task> tasks;
@@ -27,5 +28,9 @@ public class TaskList {
 
     public int size() {
         return this.tasks.size();
+    }
+    
+    public List<String> toSaveFormat() {
+        return this.tasks.stream().map(Task::toFileString).toList();
     }
 }
