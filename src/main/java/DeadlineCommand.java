@@ -1,7 +1,9 @@
-public class DeadlineCommand extends AddCommand {
-    private String by;
+import java.time.LocalDate;
 
-    public DeadlineCommand(String description, String by) {
+public class DeadlineCommand extends AddCommand {
+    private LocalDate by;
+
+    public DeadlineCommand(String description, LocalDate by) {
         super(description);
         this.by = by;
     }
