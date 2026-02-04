@@ -19,7 +19,7 @@ public class Parser {
         }
     }
 
-    public Command parse(String fullCommand) throws GingerException{
+    public static Command parse(String fullCommand) throws GingerException{
         String[] input = fullCommand.split(" ", 2);
         CommandType commandType = CommandType.fromString(input[0]);
         String data = input.length > 1 ? input[1] : "";
@@ -27,16 +27,16 @@ public class Parser {
         return switch (commandType) {
             case BYE -> new ExitCommand();
             case LIST -> new ListCommand();
-            case MARK -> new MarkCommand(this.parseIndex(data));
-            case UNMARK -> new UnmarkCommand(this.parseIndex(data));
-            case TODO -> this.prepareTodo(data);
-            case DEADLINE -> this.prepareDeadline(data);
-            case EVENT -> this.prepareEvent(data);
-            case DELETE -> new DeleteCommand(this.parseIndex(data));
+            case MARK -> new MarkCommand(Parser.parseIndex(data));
+            case UNMARK -> new UnmarkCommand(Parser.parseIndex(data));
+            case TODO -> Parser.prepareTodo(data);
+            case DEADLINE -> Parser.prepareDeadline(data);
+            case EVENT -> Parser.prepareEvent(data);
+            case DELETE -> new DeleteCommand(Parser.parseIndex(data));
         };
     }
 
-    private int parseIndex(String data) throws GingerException {
+    private static int parseIndex(String data) throws GingerException {
         if (data.isBlank()) {
             throw new GingerException("No number provided!");
         }
@@ -50,14 +50,14 @@ public class Parser {
         return index;
     }
 
-    private Command prepareTodo(String data) throws GingerException {
+    private static Command prepareTodo(String data) throws GingerException {
         if (data.isBlank()) {
             throw new GingerException("Todo description not provided, meow!");
         }
         return new TodoCommand(data);
     }
 
-    private Command prepareDeadline(String data) throws GingerException {
+    private static Command prepareDeadline(String data) throws GingerException {
         int byIndex = data.indexOf("/by");
 
         if (byIndex == -1) {
@@ -75,7 +75,7 @@ public class Parser {
         return new DeadlineCommand(description, by);
     }
 
-    private Command prepareEvent(String data) throws GingerException {
+    private static Command prepareEvent(String data) throws GingerException {
         int fromIndex = data.indexOf("/from");
         int toIndex = data.indexOf("/to");
 
