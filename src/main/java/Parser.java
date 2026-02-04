@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Parser {
     public enum CommandType {
         BYE,
@@ -72,7 +76,12 @@ public class Parser {
             throw new GingerException("Task deadline not provided, meow!");
         }
 
-        return new DeadlineCommand(description, by);
+        try {
+            LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            return new DeadlineCommand(description, date);
+        } catch (DateTimeParseException e) {
+            throw new GingerException("Deadline format is wrong, meow! Please use DD-MM-YYYY format.");
+        }
     }
 
     private static Command prepareEvent(String data) throws GingerException {
