@@ -21,16 +21,16 @@ public class Storage {
         }
     }
 
-    public TaskList load() throws GingerException {
+    public ArrayList<Task> load() throws GingerException {
         Path path = Paths.get("./data/Ginger.txt");
-        TaskList tasks = new TaskList();
+        ArrayList<Task> tasks = new ArrayList<>();
 
         try {
             List<String> lines = Files.readAllLines(path);
             for (String line : lines) {
                 try {
                     Task task = Task.fromFileString(line);
-                    tasks.addTask(task);
+                    tasks.add(task);
                 } catch (GingerException e) {
                     System.err.println(e.getMessage());
                 }
