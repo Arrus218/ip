@@ -199,6 +199,8 @@ public class Ui {
         Ui.padMessage("Bye! Hope to see you again soon!");
     }
 
+    public void showError(GingerException e) {Ui.padMessage(e.getMessage());}
+
     public void showAddedTask(Task t, int length) {
         Ui.padMessage("Added new task:\n" + t.toString()
                 + "\nNow you have " + this.getNumberOfTasks() + " task(s)!");
