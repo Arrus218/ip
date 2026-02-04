@@ -1,3 +1,4 @@
+Failed to load task list from file.
 ------------------------------------------------
 Meow! I'm Ginger!
 What can I do for you?
@@ -8,7 +9,7 @@ Added new task:
 Now you have 1 task(s)!
 ------------------------------------------------
 ------------------------------------------------
-Sorry, I don't know this command!
+I don't know what that command is!
 ------------------------------------------------
 ------------------------------------------------
 Added new task:
@@ -30,6 +31,7 @@ Now you have 3 task(s)!
 1. [T][ ] testtodo
 2. [D][ ] testdeadline (by: Friday)
 3. [E][ ] testevent (from: 2pm to: 5pm)
+Total tasks: 3
 ------------------------------------------------
 ------------------------------------------------
 Yay! I have meowked this task for you!
@@ -50,6 +52,7 @@ Meow! That task is not in my list!
 1. [T][ ] testtodo
 2. [D][X] testdeadline (by: Friday)
 3. [E][ ] testevent (from: 2pm to: 5pm)
+Total tasks: 3
 ------------------------------------------------
 ------------------------------------------------
 Removed task:
@@ -59,6 +62,7 @@ Now you have 2 task(s)!
 ------------------------------------------------
 1. [D][X] testdeadline (by: Friday)
 2. [E][ ] testevent (from: 2pm to: 5pm)
+Total tasks: 2
 ------------------------------------------------
 ------------------------------------------------
 Bye! Hope to see you again soon!

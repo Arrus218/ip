@@ -1,1 +1,2 @@
-Todo|homework|false
+Todo|homework|true
+Todo|test|false

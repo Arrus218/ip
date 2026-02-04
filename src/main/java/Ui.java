@@ -9,7 +9,9 @@ public class Ui {
     }
 
     public void showWelcome() {
-        this.padMessage("Meow! I'm Ginger!\nWhat can I do for you?");
+        this.showSeparator();
+        System.out.println("Meow! I'm Ginger!\nWhat can I do for you?");
+        this.showSeparator();
     }
 
     public String readCommand() {
@@ -17,34 +19,28 @@ public class Ui {
         return sc.nextLine();
     }
 
-    public void padMessage(String s) {
-        this.showSeparator();
-        System.out.println(s);
-        this.showSeparator();
-    }
-
     public void showGoodbye() {
-        this.padMessage("Bye! Hope to see you again soon!");
+        System.out.println("Bye! Hope to see you again soon!");
     }
 
     public void showError(GingerException e) {System.out.println(e.getMessage());}
 
     public void showAddedTask(Task t, int length) {
-        this.padMessage("Added new task:\n" + t.toString()
+        System.out.println("Added new task:\n" + t.toString()
                 + "\nNow you have " + length+ " task(s)!");
     }
 
     public void showDeletedTask(Task t, int length) {
-        this.padMessage("Removed task:\n" + t.toString()
+        System.out.println("Removed task:\n" + t.toString()
                 + "\nNow you have " + length + " task(s)!");
     }
 
     public void showMarkSuccess(Task t) {
-        this.padMessage("Yay! I have meowked this task for you!\n" + t.toString());
+        System.out.println("Yay! I have meowked this task for you!\n" + t.toString());
     }
 
     public void showUnmarkSuccess(Task t) {
-        this.padMessage("Okay, I have unmeowked this task!\n" + t.toString());
+        System.out.println("Okay, I have unmeowked this task!\n" + t.toString());
     }
 
     public void showAllTasks(TaskList tasks) {
@@ -58,7 +54,7 @@ public class Ui {
                     .append("\n");
         }
 
-        this.padMessage(sb + "Total tasks: " + tasks.size());
+        System.out.println(sb + "Total tasks: " + tasks.size());
     }
 
     public void showSeparator() {
