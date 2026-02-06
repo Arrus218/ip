@@ -29,7 +29,7 @@ public abstract class Task {
             case "Deadline":
                 // parts[3] is /by
                 return new Deadline(desc, isDone, LocalDate.parse(parts[3],
-                        DateTimeFormatter.ofPattern("dd-MM-yyy")));
+                        DateTimeFormatter.ofPattern("dd-MM-yyyy")));
             case "Event":
                 // parts[3] and [4] are '/from' and '/to'
                 return new Event(desc, isDone, parts[3], parts[4]);

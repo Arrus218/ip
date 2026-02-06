@@ -14,7 +14,7 @@ public class Ui {
 
     public void showWelcome() {
         this.showSeparator();
-        System.out.println("Meow! I'm ginger.Ginger!\nWhat can I do for you?");
+        System.out.println("Meow! I'm Ginger!\nWhat can I do for you?");
         this.showSeparator();
     }
 
