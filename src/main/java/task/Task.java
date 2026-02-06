@@ -3,6 +3,7 @@ package task;
 import ginger.GingerException;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Task {
     protected String description;
@@ -27,7 +28,8 @@ public abstract class Task {
                 return new Todo(desc, isDone);
             case "Deadline":
                 // parts[3] is /by
-                return new Deadline(desc, isDone, LocalDate.parse(parts[3]));
+                return new Deadline(desc, isDone, LocalDate.parse(parts[3],
+                        DateTimeFormatter.ofPattern("dd-MM-yyy")));
             case "Event":
                 // parts[3] and [4] are '/from' and '/to'
                 return new Event(desc, isDone, parts[3], parts[4]);
