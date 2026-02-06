@@ -60,7 +60,7 @@ public class Parser {
 
     private static Command prepareTodo(String data) throws GingerException {
         if (data.isBlank()) {
-            throw new GingerException("task.Todo description not provided, meow!");
+            throw new GingerException("Todo description not provided, meow!");
         }
         return new TodoCommand(data);
     }
@@ -75,16 +75,16 @@ public class Parser {
         String description = data.substring(0, byIndex).trim();
         String by = data.substring(byIndex + 3).trim(); // +3 to skip "/by"
         if (description.isBlank()) {
-            throw new GingerException("task.Deadline description not provided, meow!");
+            throw new GingerException("Deadline description not provided, meow!");
         } else if (by.isBlank()) {
-            throw new GingerException("task.Task deadline not provided, meow!");
+            throw new GingerException("Task deadline not provided, meow!");
         }
 
         try {
             LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
             return new DeadlineCommand(description, date);
         } catch (DateTimeParseException e) {
-            throw new GingerException("task.Deadline format is wrong, meow! Please use DD-MM-YYYY format.");
+            throw new GingerException("Deadline format is wrong, meow! Please use DD-MM-YYYY format.");
         }
     }
 
@@ -102,11 +102,11 @@ public class Parser {
         String from = data.substring(fromIndex + 6, toIndex).trim();
         String to = data.substring(toIndex + 4);
         if (description.isBlank()) {
-            throw new GingerException("task.Event description not provided, meow!");
+            throw new GingerException("Event description not provided, meow!");
         } else if (from.isBlank()) {
-            throw new GingerException("task.Event start time not provided, meow!");
+            throw new GingerException("Event start time not provided, meow!");
         } else if (to.isBlank()) {
-            throw new GingerException("task.Event end time not provided, meow!");
+            throw new GingerException("Event end time not provided, meow!");
         }
 
         return new EventCommand(description, from, to);
