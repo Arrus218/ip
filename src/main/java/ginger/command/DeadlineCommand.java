@@ -3,9 +3,9 @@ package ginger.command;
 import ginger.GingerException;
 import ginger.Storage;
 import ginger.Ui;
-import task.Deadline;
-import task.Task;
-import task.TaskList;
+import ginger.task.Deadline;
+import ginger.task.Task;
+import ginger.task.TaskList;
 
 import java.time.LocalDate;
 

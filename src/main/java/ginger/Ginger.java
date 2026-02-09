@@ -1,7 +1,7 @@
 package ginger;
 
 import ginger.command.Command;
-import task.TaskList;
+import ginger.task.TaskList;
 
 public class Ginger {
     private Storage storage;

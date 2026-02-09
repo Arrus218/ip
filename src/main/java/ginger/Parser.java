@@ -23,7 +23,7 @@ public class Parser {
                     return c;
                 }
             }
-            throw new GingerException("I don't know what that ginger.command is!");
+            throw new GingerException("I don't know what that command is!");
         }
     }
 

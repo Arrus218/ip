@@ -1,4 +1,4 @@
-package task;
+package ginger.task;
 
 import ginger.GingerException;
 

@@ -1,7 +1,7 @@
 package ginger;
 
-import task.Task;
-import task.TaskList;
+import ginger.task.Task;
+import ginger.task.TaskList;
 
 import java.util.Scanner;
 

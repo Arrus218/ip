@@ -3,9 +3,9 @@ package ginger.command;
 import ginger.GingerException;
 import ginger.Storage;
 import ginger.Ui;
-import task.Event;
-import task.Task;
-import task.TaskList;
+import ginger.task.Event;
+import ginger.task.Task;
+import ginger.task.TaskList;
 
 public class EventCommand extends AddCommand {
     private String from;

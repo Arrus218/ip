@@ -3,8 +3,8 @@ package ginger.command;
 import ginger.GingerException;
 import ginger.Storage;
 import ginger.Ui;
-import task.Task;
-import task.TaskList;
+import ginger.task.Task;
+import ginger.task.TaskList;
 
 public class MarkCommand extends IndexCommand {
     public MarkCommand(int index) {
