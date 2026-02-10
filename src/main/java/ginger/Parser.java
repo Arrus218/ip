@@ -40,6 +40,7 @@ public class Parser {
 
         /**
          * Converts a string into a {@code CommandType}.
+         *
          * @param s The raw command word.
          * @return The matching {@code CommandType}.
          * @throws GingerException If the command word is not recognized.
@@ -65,9 +66,9 @@ public class Parser {
      * @param fullCommand The complete line of text entered by the user.
      * @return A {@code Command} object ready for execution.
      * @throws GingerException If the command word is unrecognized or if the
-     * arguments provided are invalid/missing.
+     *                         arguments provided are invalid/missing.
      */
-    public static Command parse(String fullCommand) throws GingerException{
+    public static Command parse(String fullCommand) throws GingerException {
         String[] input = fullCommand.split(" ", 2);
         CommandType commandType = CommandType.fromString(input[0]);
         String data = input.length > 1 ? input[1] : "";
