@@ -15,7 +15,6 @@ import ginger.command.MarkCommand;
 import ginger.command.TodoCommand;
 import ginger.command.UnmarkCommand;
 
-
 /**
  * Processes user input strings and transforms them into executable Command objects.
  * <p>
