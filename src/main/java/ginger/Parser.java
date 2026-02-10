@@ -15,6 +15,9 @@ import java.time.format.DateTimeParseException;
  * </p>
  */
 public class Parser {
+    /**
+     * Represents the valid command keywords supported by Ginger.
+     */
     public enum CommandType {
         BYE,
         LIST,
@@ -25,6 +28,12 @@ public class Parser {
         EVENT,
         DELETE;
 
+        /**
+         * Converts a string into a {@code CommandType}.
+         * @param s The raw command word.
+         * @return The matching {@code CommandType}.
+         * @throws GingerException If the command word is not recognized.
+         */
         public static CommandType fromString(String s) throws GingerException {
             for (CommandType c : CommandType.values()) {
                 if (c.toString().equalsIgnoreCase(s)) {
