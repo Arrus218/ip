@@ -1,13 +1,13 @@
 package ginger.command;
 
+import java.time.LocalDate;
+
 import ginger.GingerException;
 import ginger.Storage;
 import ginger.Ui;
 import ginger.task.Deadline;
 import ginger.task.Task;
 import ginger.task.TaskList;
-
-import java.time.LocalDate;
 
 public class DeadlineCommand extends AddCommand {
     private LocalDate by;

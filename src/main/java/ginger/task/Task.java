@@ -1,9 +1,9 @@
 package ginger.task;
 
-import ginger.GingerException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import ginger.GingerException;
 
 public abstract class Task {
     protected String description;

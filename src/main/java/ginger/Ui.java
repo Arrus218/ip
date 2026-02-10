@@ -1,9 +1,9 @@
 package ginger;
 
+import java.util.Scanner;
+
 import ginger.task.Task;
 import ginger.task.TaskList;
-
-import java.util.Scanner;
 
 public class Ui {
     private final Scanner sc;

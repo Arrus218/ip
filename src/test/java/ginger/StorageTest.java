@@ -1,15 +1,19 @@
 package ginger;
 
-import ginger.task.Task;
-import ginger.task.TaskList;
-import ginger.task.Todo;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import ginger.task.Task;
+import ginger.task.TaskList;
+import ginger.task.Todo;
 
 public class StorageTest {
     @TempDir
