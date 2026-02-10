@@ -47,12 +47,27 @@ public class Ui {
         System.out.println("Okay, I have unmeowked this task!\n" + t.toString());
     }
 
-    public void showAllTasks(TaskList tasks) {
-        if (tasks.size() == 0) {
+    public void showListTasks(TaskList tasks) {
+        if (tasks.isEmpty()) {
             System.out.println("Uh-oh! There aren't any tasks in the list!");
             return;
+        } else {
+            System.out.println("Here are all the tasks in your list: ");
+            printTasks(tasks);
         }
+    }
 
+    public void showFoundTasks(TaskList tasks) {
+        if (tasks.isEmpty()) {
+            System.out.println("Oops, seems like there are no matching tasks!");
+            return;
+        } else {
+            System.out.println("Here are the matching tasks in your list: ");
+            printTasks(tasks);
+        }
+    }
+
+    private void printTasks(TaskList tasks) {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < tasks.size(); i++) {
@@ -63,11 +78,7 @@ public class Ui {
                     .append("\n");
         }
 
-        System.out.println(sb + "Total tasks: " + tasks.size());
-    }
-
-    public void showFindSuccess() {
-        System.out.println("Here are the matching tasks in your list: ");
+        System.out.println(sb + "Tasks: " + tasks.size());
     }
 
     public void showSeparator() {

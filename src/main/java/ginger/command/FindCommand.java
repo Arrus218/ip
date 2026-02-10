@@ -16,8 +16,7 @@ public class FindCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
         TaskList foundTasks = new TaskList(tasks.find(this.keyword));
-        ui.showAllTasks(foundTasks);
-        ui.showFindSuccess();
+        ui.showFoundTasks(foundTasks);
     }
 
     @Override

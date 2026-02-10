@@ -9,7 +9,7 @@ import ginger.task.TaskList;
 public class ListCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
-        ui.showAllTasks(tasks);
+        ui.showListTasks(tasks);
     }
 
     @Override

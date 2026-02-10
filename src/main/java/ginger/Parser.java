@@ -114,7 +114,7 @@ public class Parser {
         return new EventCommand(description, from, to);
     }
 
-    private Command prepareFind(String data) throws GingerException {
+    private static Command prepareFind(String data) throws GingerException {
         if (data.isBlank()) {
             throw new GingerException("I don't know what you're looking for, meow! Please provide a keyword!");
         }

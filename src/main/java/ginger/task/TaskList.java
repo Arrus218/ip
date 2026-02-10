@@ -31,7 +31,11 @@ public class TaskList {
     public int size() {
         return this.tasks.size();
     }
-    
+
+    public boolean isEmpty() {
+        return this.tasks.isEmpty();
+    }
+
     public List<String> toSaveFormat() {
         return this.tasks.stream().map(Task::toFileString).toList();
     }
