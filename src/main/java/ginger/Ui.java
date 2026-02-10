@@ -48,6 +48,11 @@ public class Ui {
     }
 
     public void showAllTasks(TaskList tasks) {
+        if (tasks.size() == 0) {
+            System.out.println("Uh-oh! There aren't any tasks in the list!");
+            return;
+        }
+
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < tasks.size(); i++) {
@@ -59,6 +64,10 @@ public class Ui {
         }
 
         System.out.println(sb + "Total tasks: " + tasks.size());
+    }
+
+    public void showFindSuccess() {
+        System.out.println("Here are the matching tasks in your list: ");
     }
 
     public void showSeparator() {

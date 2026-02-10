@@ -12,7 +12,7 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
-    public TaskList(ArrayList<Task> tasks) {
+    public TaskList(List<Task> tasks) {
         this.tasks = new ArrayList<>(tasks);
     }
 
@@ -34,5 +34,9 @@ public class TaskList {
     
     public List<String> toSaveFormat() {
         return this.tasks.stream().map(Task::toFileString).toList();
+    }
+
+    public List<Task> find(String keyword) {
+        return this.tasks.stream().filter(x -> x.getDescription().contains(keyword)).toList();
     }
 }
