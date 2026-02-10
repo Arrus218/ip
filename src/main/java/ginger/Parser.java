@@ -15,7 +15,8 @@ public class Parser {
         TODO,
         DEADLINE,
         EVENT,
-        DELETE;
+        DELETE,
+        FIND;
 
         public static CommandType fromString(String s) throws GingerException {
             for (CommandType c : CommandType.values()) {
@@ -41,6 +42,7 @@ public class Parser {
             case DEADLINE -> Parser.prepareDeadline(data);
             case EVENT -> Parser.prepareEvent(data);
             case DELETE -> new DeleteCommand(Parser.parseIndex(data));
+            case FIND -> Parser.prepareFind(data);
         };
     }
 
@@ -110,5 +112,12 @@ public class Parser {
         }
 
         return new EventCommand(description, from, to);
+    }
+
+    private static Command prepareFind(String data) throws GingerException {
+        if (data.isBlank()) {
+            throw new GingerException("I don't know what you're looking for, meow! Please provide a keyword!");
+        }
+        return new FindCommand(data);
     }
 }

@@ -6,10 +6,17 @@ import ginger.Ui;
 import ginger.task.Task;
 import ginger.task.TaskList;
 
-public class ListCommand extends Command {
+public class FindCommand extends Command {
+    private String keyword;
+
+    public FindCommand(String keyword) {
+        this.keyword = keyword;
+    }
+
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
-        ui.showListTasks(tasks);
+        TaskList foundTasks = new TaskList(tasks.find(this.keyword));
+        ui.showFoundTasks(foundTasks);
     }
 
     @Override
