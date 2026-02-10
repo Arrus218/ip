@@ -1,14 +1,24 @@
 package ginger;
 
-import ginger.command.*;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.stream.Stream;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.*;
+import ginger.command.Command;
+import ginger.command.DeadlineCommand;
+import ginger.command.DeleteCommand;
+import ginger.command.EventCommand;
+import ginger.command.ExitCommand;
+import ginger.command.ListCommand;
+import ginger.command.MarkCommand;
+import ginger.command.TodoCommand;
+import ginger.command.UnmarkCommand;
 
 public class ParserTest {
     @ParameterizedTest

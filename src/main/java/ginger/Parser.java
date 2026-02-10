@@ -1,10 +1,18 @@
 package ginger;
 
-import ginger.command.*;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import ginger.command.Command;
+import ginger.command.DeadlineCommand;
+import ginger.command.DeleteCommand;
+import ginger.command.EventCommand;
+import ginger.command.ExitCommand;
+import ginger.command.ListCommand;
+import ginger.command.MarkCommand;
+import ginger.command.TodoCommand;
+import ginger.command.UnmarkCommand;
 
 public class Parser {
     public enum CommandType {

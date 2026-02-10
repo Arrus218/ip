@@ -1,9 +1,9 @@
 package ginger.task;
 
-import ginger.GingerException;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import ginger.GingerException;
 
 public class TaskList {
     private ArrayList<Task> tasks;
