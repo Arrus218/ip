@@ -54,7 +54,7 @@ public abstract class Task {
 
     public abstract String getTaskIcon();
 
-    private String getDescription() {
+    public String getDescription() {
         return this.description;
     }
 
