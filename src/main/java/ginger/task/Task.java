@@ -37,7 +37,7 @@ public abstract class Task {
      * @param line A single line from the storage file.
      * @return The specific {@code Task} subclass instance (Todo, Deadline, or Event).
      * @throws GingerException If the line is corrupted, has missing parameters,
-     * or contains an unknown task type.
+     *                         or contains an unknown task type.
      */
     public static Task fromFileString(String line) throws GingerException {
         String[] parts = line.split("\\|");
@@ -49,17 +49,17 @@ public abstract class Task {
         boolean isDone = Boolean.parseBoolean(parts[2]);
 
         switch (type) {
-            case "Todo":
-                return new Todo(desc, isDone);
-            case "Deadline":
-                // parts[3] is /by
-                return new Deadline(desc, isDone, LocalDate.parse(parts[3],
-                        DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-            case "Event":
-                // parts[3] and [4] are '/from' and '/to'
-                return new Event(desc, isDone, parts[3], parts[4]);
-            default:
-                throw new GingerException("Unknown task type in file: " + type);
+        case "Todo":
+            return new Todo(desc, isDone);
+        case "Deadline":
+            // parts[3] is /by
+            return new Deadline(desc, isDone, LocalDate.parse(parts[3],
+                    DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        case "Event":
+            // parts[3] and [4] are '/from' and '/to'
+            return new Event(desc, isDone, parts[3], parts[4]);
+        default:
+            throw new GingerException("Unknown task type in file: " + type);
         }
     }
 
@@ -115,6 +115,7 @@ public abstract class Task {
      * Subclasses should call this method via {@code super.toString()}
      * to maintain a consistent format for shared fields.
      * </p>
+     *
      * @return A string combining the status icon and description.
      */
     @Override

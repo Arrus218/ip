@@ -23,7 +23,8 @@ import ginger.command.UnmarkCommand;
 public class ParserTest {
     @ParameterizedTest
     @MethodSource("provideValidCommands")
-    void parse_validInputs_returnsCorrectCommandType(String input, Class<? extends Command> expectedClass) throws GingerException {
+    void parse_validInputs_returnsCorrectCommandType(
+            String input, Class<? extends Command> expectedClass) throws GingerException {
         Command result = Parser.parse(input);
         assertInstanceOf(expectedClass, result);
     }

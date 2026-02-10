@@ -50,7 +50,9 @@ public class Ui {
      *
      * @param e The {@code GingerException} containing the error details.
      */
-    public void showError(GingerException e) {System.out.println(e.getMessage());}
+    public void showError(GingerException e) {
+        System.out.println(e.getMessage());
+    }
 
     /**
      * Displays a confirmation message when a new task is added.
@@ -60,7 +62,7 @@ public class Ui {
      */
     public void showAddedTask(Task t, int length) {
         System.out.println("Added new task:\n" + t.toString()
-                + "\nNow you have " + length+ " task(s)!");
+                + "\nNow you have " + length + " task(s)!");
     }
 
     /**
