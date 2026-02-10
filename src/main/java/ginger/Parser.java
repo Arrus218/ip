@@ -6,6 +6,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Processes user input strings and transforms them into executable Command objects.
+ * <p>
+ * This class serves as the main entry point for interpreting raw user strings,
+ * handling command identification, data validation, and date parsing.
+ * It ensures that all inputs follow the expected syntax before creating tasks.
+ * </p>
+ */
 public class Parser {
     public enum CommandType {
         BYE,
@@ -27,6 +35,19 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the raw user input and returns the corresponding executable command.
+     * <p>
+     * This method splits the input into a command word and its arguments. It identifies
+     * the command type and delegates further parsing of arguments to specialized
+     * helper methods like {@code prepareDeadline} or {@code prepareEvent}.
+     * </p>
+     *
+     * @param fullCommand The complete line of text entered by the user.
+     * @return A {@code Command} object ready for execution.
+     * @throws GingerException If the command word is unrecognized or if the
+     * arguments provided are invalid/missing.
+     */
     public static Command parse(String fullCommand) throws GingerException{
         String[] input = fullCommand.split(" ", 2);
         CommandType commandType = CommandType.fromString(input[0]);
