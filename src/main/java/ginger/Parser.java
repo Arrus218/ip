@@ -9,12 +9,25 @@ import ginger.command.DeadlineCommand;
 import ginger.command.DeleteCommand;
 import ginger.command.EventCommand;
 import ginger.command.ExitCommand;
+import ginger.command.FindCommand;
 import ginger.command.ListCommand;
 import ginger.command.MarkCommand;
 import ginger.command.TodoCommand;
 import ginger.command.UnmarkCommand;
 
+
+/**
+ * Processes user input strings and transforms them into executable Command objects.
+ * <p>
+ * This class serves as the main entry point for interpreting raw user strings,
+ * handling command identification, data validation, and date parsing.
+ * It ensures that all inputs follow the expected syntax before creating tasks.
+ * </p>
+ */
 public class Parser {
+    /**
+     * Represents the valid command keywords supported by Ginger.
+     */
     public enum CommandType {
         BYE,
         LIST,
@@ -26,6 +39,12 @@ public class Parser {
         DELETE,
         FIND;
 
+        /**
+         * Converts a string into a {@code CommandType}.
+         * @param s The raw command word.
+         * @return The matching {@code CommandType}.
+         * @throws GingerException If the command word is not recognized.
+         */
         public static CommandType fromString(String s) throws GingerException {
             for (CommandType c : CommandType.values()) {
                 if (c.toString().equalsIgnoreCase(s)) {
@@ -36,6 +55,19 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the raw user input and returns the corresponding executable command.
+     * <p>
+     * This method splits the input into a command word and its arguments. It identifies
+     * the command type and delegates further parsing of arguments to specialized
+     * helper methods like {@code prepareDeadline} or {@code prepareEvent}.
+     * </p>
+     *
+     * @param fullCommand The complete line of text entered by the user.
+     * @return A {@code Command} object ready for execution.
+     * @throws GingerException If the command word is unrecognized or if the
+     * arguments provided are invalid/missing.
+     */
     public static Command parse(String fullCommand) throws GingerException{
         String[] input = fullCommand.split(" ", 2);
         CommandType commandType = CommandType.fromString(input[0]);
