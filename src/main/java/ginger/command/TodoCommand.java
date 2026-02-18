@@ -40,8 +40,8 @@ public class TodoCommand extends AddCommand {
      * during the {@code onExecute} phase.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
         Task t = new Todo(super.description);
-        super.onExecute(t, tasks, ui, storage);
+        return super.onExecute(t, tasks, ui, storage);
     }
 }

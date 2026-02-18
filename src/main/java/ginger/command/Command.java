@@ -23,7 +23,7 @@ public abstract class Command {
      * @param storage The {@code Storage} for saving or loading data.
      * @throws GingerException If an error occurs during execution.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException;
 
     /**
      * Defines the specific internal logic to be performed on a task.
@@ -32,13 +32,15 @@ public abstract class Command {
      * Subclasses should override this to provide custom behavior (e.g., adding to a list
      * or marking as done) for their specific task type.
      * </p>
+     *
      * @param task    The task associated with the command.
      * @param tasks   The current task list.
      * @param ui      The user interface.
      * @param storage The storage system.
+     * @return
      * @throws GingerException If internal execution fails.
      */
-    protected abstract void onExecute(Task task, TaskList tasks, Ui ui, Storage storage) throws GingerException;
+    protected abstract String onExecute(Task task, TaskList tasks, Ui ui, Storage storage) throws GingerException;
 
     /**
      * Indicates whether this command should terminate the application.

@@ -22,8 +22,8 @@ public class ExitCommand extends Command {
      * @param storage The storage system (unused by this command).
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
-        ui.showGoodbye();
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
+        return ui.showGoodbye();
     }
 
     /**
@@ -37,10 +37,11 @@ public class ExitCommand extends Command {
      * @param tasks   Unused.
      * @param ui      Unused.
      * @param storage Unused.
+     * @return
      */
     @Override
-    public void onExecute(Task task, TaskList tasks, Ui ui, Storage storage) throws GingerException {
-        return;
+    public String onExecute(Task task, TaskList tasks, Ui ui, Storage storage) throws GingerException {
+        return null;
     }
 
     /**
