@@ -32,8 +32,9 @@ public abstract class IndexCommand extends Command {
      * @param tasks   The list used to check the valid index range.
      * @param ui      The user interface.
      * @param storage The storage system.
+     * @return
      * @throws GingerException If the provided index is negative or exceeds
-     * the current list size.
+     *                         the current list size.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {

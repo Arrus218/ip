@@ -20,6 +20,7 @@ public class ListCommand extends Command {
      * @param tasks   The {@code TaskList} containing the tasks to be displayed.
      * @param ui      The {@code Ui} component responsible for printing the list.
      * @param storage The {@code Storage} component (unused as no saving is required).
+     * @return
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {

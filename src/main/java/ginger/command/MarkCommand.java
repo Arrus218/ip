@@ -38,8 +38,9 @@ public class MarkCommand extends IndexCommand {
      * @param tasks   The list containing the task to be marked.
      * @param ui      The user interface to confirm the status change.
      * @param storage The storage component used to persist the update.
+     * @return
      * @throws GingerException If the index is invalid or if the storage
-     * operation fails in {@code onExecute}.
+     *                         operation fails in {@code onExecute}.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {

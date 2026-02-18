@@ -43,8 +43,9 @@ public class DeadlineCommand extends AddCommand {
      * @param tasks   The list where the deadline will be added.
      * @param ui      The user interface for displaying the "Added task" message.
      * @param storage The storage handler for saving the updated list.
+     * @return
      * @throws GingerException If an error occurs during the {@code onExecute} process,
-     * typically due to issues saving to file.
+     *                         typically due to issues saving to file.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {

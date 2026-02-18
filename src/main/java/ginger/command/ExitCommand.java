@@ -20,6 +20,7 @@ public class ExitCommand extends Command {
      * @param tasks   The list of tasks (unused by this command).
      * @param ui      The user interface used to display the farewell message.
      * @param storage The storage system (unused by this command).
+     * @return
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {

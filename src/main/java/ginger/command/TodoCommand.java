@@ -36,8 +36,9 @@ public class TodoCommand extends AddCommand {
      * @param tasks   The list where the todo will be added.
      * @param ui      The user interface for displaying feedback.
      * @param storage The storage handler for saving the updated list.
+     * @return
      * @throws GingerException If the task cannot be saved to the hard drive
-     * during the {@code onExecute} phase.
+     *                         during the {@code onExecute} phase.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {

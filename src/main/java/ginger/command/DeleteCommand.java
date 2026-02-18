@@ -35,8 +35,9 @@ public class DeleteCommand extends IndexCommand {
      * @param tasks   The list from which the task will be deleted.
      * @param ui      The user interface to display the deletion confirmation.
      * @param storage The storage component (inherited logic handles saving).
+     * @return
      * @throws GingerException If the index is out of bounds or if the
-     * deletion process encounters an error.
+     *                         deletion process encounters an error.
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
