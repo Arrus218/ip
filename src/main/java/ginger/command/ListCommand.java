@@ -22,8 +22,8 @@ public class ListCommand extends Command {
      * @param storage The {@code Storage} component (unused as no saving is required).
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
-        ui.showListTasks(tasks);
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
+        return ui.showListTasks(tasks);
     }
 
     /**
@@ -37,9 +37,10 @@ public class ListCommand extends Command {
      * @param tasks   Unused.
      * @param ui      Unused.
      * @param storage Unused.
+     * @return
      */
     @Override
-    protected void onExecute(Task t, TaskList tasks, Ui ui, Storage storage) throws GingerException {
-        return;
+    protected String onExecute(Task t, TaskList tasks, Ui ui, Storage storage) throws GingerException {
+        return null;
     }
 }

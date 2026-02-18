@@ -14,13 +14,13 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
         TaskList foundTasks = new TaskList(tasks.find(this.keyword));
-        ui.showFoundTasks(foundTasks);
+        return ui.showFoundTasks(foundTasks);
     }
 
     @Override
-    protected void onExecute(Task t, TaskList tasks, Ui ui, Storage storage) throws GingerException {
-        return;
+    protected String onExecute(Task t, TaskList tasks, Ui ui, Storage storage) throws GingerException {
+        return null;
     }
 }

@@ -33,12 +33,13 @@ public abstract class AddCommand extends Command {
      * @param tasks   The list where the task will be appended.
      * @param ui      The interface used to confirm the addition to the user.
      * @param storage The storage handler to save the list after the modification.
+     * @return
      * @throws GingerException If the task cannot be saved to the hard drive.
      */
     @Override
-    protected void onExecute(Task task, TaskList tasks, Ui ui, Storage storage) throws GingerException {
+    protected String onExecute(Task task, TaskList tasks, Ui ui, Storage storage) throws GingerException {
         tasks.addTask(task);
         storage.save(tasks);
-        ui.showAddedTask(task, tasks.size());
+        return ui.showAddedTask(task, tasks.size());
     }
 }

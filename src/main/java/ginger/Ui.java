@@ -22,10 +22,8 @@ public class Ui {
     /**
      * Displays the welcome greeting to the user.
      */
-    public void showWelcome() {
-        this.showSeparator();
-        System.out.println("Meow! I'm Ginger!\nWhat can I do for you?");
-        this.showSeparator();
+    public String showWelcome() {
+        return "Meow! I'm Ginger!\nWhat can I do for you?";
     }
 
     /**
@@ -41,8 +39,8 @@ public class Ui {
     /**
      * Displays the goodbye message to the user.
      */
-    public void showGoodbye() {
-        System.out.println("Bye! Hope to see you again soon!");
+    public String showGoodbye() {
+        return "Bye! Hope to see you again soon!";
     }
 
     /**
@@ -50,8 +48,8 @@ public class Ui {
      *
      * @param e The {@code GingerException} containing the error details.
      */
-    public void showError(GingerException e) {
-        System.out.println(e.getMessage());
+    public String showError(GingerException e) {
+        return e.getMessage();
     }
 
     /**
@@ -60,8 +58,8 @@ public class Ui {
      * @param t The task that was recently added.
      * @param length The current total number of tasks in the list.
      */
-    public void showAddedTask(Task t, int length) {
-        System.out.println("Added new task:\n" + t.toString()
+    public String showAddedTask(Task t, int length) {
+        return ("Added new task:\n" + t.toString()
                 + "\nNow you have " + length + " task(s)!");
     }
 
@@ -71,8 +69,8 @@ public class Ui {
      * @param t The task that was recently deleted.
      * @param length The current total number of tasks in the list.
      */
-    public void showDeletedTask(Task t, int length) {
-        System.out.println("Removed task:\n" + t.toString()
+    public String showDeletedTask(Task t, int length) {
+        return ("Removed task:\n" + t.toString()
                 + "\nNow you have " + length + " task(s)!");
     }
 
@@ -81,8 +79,8 @@ public class Ui {
      *
      * @param t The task that was recently marked for completion.
      */
-    public void showMarkSuccess(Task t) {
-        System.out.println("Yay! I have meowked this task for you!\n" + t.toString());
+    public String showMarkSuccess(Task t) {
+        return ("Yay! I have meowked this task for you!\n" + t.toString());
     }
 
     /**
@@ -90,8 +88,8 @@ public class Ui {
      *
      * @param t The task that was recently unmarked as complete.
      */
-    public void showUnmarkSuccess(Task t) {
-        System.out.println("Okay, I have unmeowked this task!\n" + t.toString());
+    public String showUnmarkSuccess(Task t) {
+        return ("Okay, I have unmeowked this task!\n" + t.toString());
     }
 
     /**
@@ -99,13 +97,11 @@ public class Ui {
      *
      * @param tasks The {@code TaskList} object containing all tasks to be displayed.
      */
-    public void showListTasks(TaskList tasks) {
+    public String showListTasks(TaskList tasks) {
         if (tasks.isEmpty()) {
-            System.out.println("Uh-oh! There aren't any tasks in the list!");
-            return;
+            return ("Uh-oh! There aren't any tasks in the list!");
         } else {
-            System.out.println("Here are all the tasks in your list: ");
-            printTasks(tasks);
+            return ("Here are all the tasks in your list:\n") + printTasks(tasks);
         }
     }
 
@@ -114,17 +110,15 @@ public class Ui {
      *
      * @param tasks The {@code TaskList} object containing the filtered tasks found using the keyword.
      */
-    public void showFoundTasks(TaskList tasks) {
+    public String showFoundTasks(TaskList tasks) {
         if (tasks.isEmpty()) {
-            System.out.println("Oops, seems like there are no matching tasks!");
-            return;
+            return ("Oops, seems like there are no matching tasks!");
         } else {
-            System.out.println("Here are the matching tasks in your list: ");
-            printTasks(tasks);
+            return ("Here are the matching tasks in your list:\n") + printTasks(tasks);
         }
     }
 
-    private void printTasks(TaskList tasks) {
+    private String printTasks(TaskList tasks) {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < tasks.size(); i++) {
@@ -135,13 +129,13 @@ public class Ui {
                     .append("\n");
         }
 
-        System.out.println(sb + "Tasks: " + tasks.size());
+        return (sb + "Tasks: " + tasks.size());
     }
 
     /**
      * Displays a horizontal separator line to organize console output.
      */
-    public void showSeparator() {
-        System.out.println("------------------------------------------------");
+    public String showSeparator() {
+        return ("------------------------------------------------");
     }
 }

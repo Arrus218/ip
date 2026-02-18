@@ -15,6 +15,7 @@ public class Ginger {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    public boolean isExit;
 
     /**
      * Initializes the Ginger application with a specific file path for data.
@@ -29,46 +30,24 @@ public class Ginger {
     public Ginger(String filePath) {
         this.storage = new Storage(filePath);
         this.ui = new Ui();
+        this.isExit = false;
         try {
             this.tasks = new TaskList(storage.load());
         } catch (GingerException e) {
-            ui.showError(e);
             tasks = new TaskList();
         }
     }
 
     /**
-     * Starts the main application loop.
-     * <p>
-     * This method displays the welcome message and continuously processes user
-     * input until an exit command is issued. It handles exceptions globally
-     * to ensure the application doesn't crash on invalid input.
-     * </p>
+     * Generates a response for the user's chat message.
      */
-    public void run() {
-        ui.showWelcome();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showSeparator(); // show the divider line ("_______")
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (GingerException e) {
-                ui.showError(e);
-            } finally {
-                ui.showSeparator();
-            }
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            this.isExit = c.isExit();
+            return c.execute(tasks, ui, storage);
+        } catch (GingerException e) {
+            return ui.showError(e);
         }
-    }
-
-    /**
-     * Main entry point for the Ginger application.
-     *
-     * @param args Command line arguments (not used).
-     */
-    public static void main(String[] args) {
-        new Ginger("./data/Ginger.txt").run();
     }
 }

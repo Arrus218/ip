@@ -39,10 +39,10 @@ public class DeleteCommand extends IndexCommand {
      * deletion process encounters an error.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
         super.execute(tasks, ui, storage);
         Task t = tasks.getTask(index);
         tasks.deleteTask(t);
-        ui.showDeletedTask(t, tasks.size());
+        return ui.showDeletedTask(t, tasks.size());
     }
 }

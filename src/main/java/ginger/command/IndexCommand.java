@@ -36,10 +36,11 @@ public abstract class IndexCommand extends Command {
      * the current list size.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
         if (this.index < 0 || this.index >= tasks.size()) {
             throw new GingerException("Meow! That task is not in my list!");
         }
+        return "";
     }
 
     /**
@@ -54,10 +55,12 @@ public abstract class IndexCommand extends Command {
      * @param tasks   The list where the task is updated.
      * @param ui      The interface used to confirm the update to the user.
      * @param storage The storage handler to save the list after the modification.
+     * @return
      * @throws GingerException If the task cannot be saved to the hard drive.
      */
     @Override
-    protected void onExecute(Task task, TaskList tasks, Ui ui, Storage storage) throws GingerException {
+    protected String onExecute(Task task, TaskList tasks, Ui ui, Storage storage) throws GingerException {
         storage.save(tasks);
+        return null;
     }
 }

@@ -42,11 +42,11 @@ public class MarkCommand extends IndexCommand {
      * operation fails in {@code onExecute}.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws GingerException {
         super.execute(tasks, ui, storage);
         Task t = tasks.getTask(super.index);
         t.setDone();
-        ui.showMarkSuccess(t);
         super.onExecute(t, tasks, ui, storage);
+        return ui.showMarkSuccess(t);
     }
 }
