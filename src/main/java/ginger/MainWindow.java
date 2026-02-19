@@ -30,9 +30,6 @@ public class MainWindow extends AnchorPane {
     public void initialize() {
         dialogContainer.prefWidthProperty().bind(scrollPane.widthProperty().subtract(20));
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        scrollPane.setFitToWidth(true);
-        this.setStyle("-fx-background-color: " + "#FFDAB9" + ";");
-        scrollPane.setStyle("-fx-background: " + "#FFDAB9" + "; -fx-background-color: transparent;");
     }
 
     /** Injects the Ginger instance */
