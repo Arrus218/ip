@@ -1,5 +1,8 @@
 package ginger.task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a task that occurs within a specific time frame.
  * <p>
@@ -9,8 +12,8 @@ package ginger.task;
  * </p>
  */
 public class Event extends Task {
-    protected String from;
-    protected String to;
+    protected LocalDate from;
+    protected LocalDate to;
 
     /**
      * Constructs a new {@code Event} task with a description and time range.
@@ -19,7 +22,7 @@ public class Event extends Task {
      * @param from        The start time/date string.
      * @param to          The end time/date string.
      */
-    public Event(String description, String from, String to) {
+    public Event(String description, LocalDate from, LocalDate to) {
         super(description);
         this.from = from;
         this.to = to;
@@ -36,7 +39,7 @@ public class Event extends Task {
      * @param from        The start time/date string.
      * @param to          The end time/date string.
      */
-    public Event(String description, boolean isDone, String from, String to) {
+    public Event(String description, boolean isDone, LocalDate from, LocalDate to) {
         super(description);
         this.isDone = isDone;
         this.from = from;
@@ -51,11 +54,11 @@ public class Event extends Task {
         return "Event";
     }
 
-    public String getFrom() {
+    public LocalDate getFrom() {
         return this.from;
     }
 
-    public String getTo() {
+    public LocalDate getTo() {
         return this.to;
     }
 
@@ -69,7 +72,9 @@ public class Event extends Task {
      */
     @Override
     public String toFileString() {
-        return this.getTaskType() + "|" + super.toFileString() + "|" + this.from + "|" + this.to;
+        return this.getTaskType() + "|" + super.toFileString() + "|"
+                + this.from.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "|"
+                + this.to.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
     /**
@@ -79,6 +84,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return this.getTaskIcon() + super.toString() + " (from: " + this.from + " to: " + this.to + ")";
+        return this.getTaskIcon() + super.toString() + " (from: " + this.from.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+                + " to: " + this.to.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + ")";
     }
 }

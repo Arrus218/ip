@@ -57,7 +57,9 @@ public abstract class Task {
                     DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         case "Event":
             // parts[3] and [4] are '/from' and '/to'
-            return new Event(desc, isDone, parts[3], parts[4]);
+            return new Event(desc, isDone,
+                    LocalDate.parse(parts[3], DateTimeFormatter.ofPattern("dd-MM-yyyy")),
+                    LocalDate.parse(parts[4], DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         default:
             throw new GingerException("Unknown task type in file: " + type);
         }

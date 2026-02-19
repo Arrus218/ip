@@ -1,5 +1,7 @@
 package ginger.command;
 
+import java.time.LocalDate;
+
 import ginger.GingerException;
 import ginger.Storage;
 import ginger.Ui;
@@ -16,8 +18,8 @@ import ginger.task.TaskList;
  * </p>
  */
 public class EventCommand extends AddCommand {
-    private String from;
-    private String to;
+    private LocalDate from;
+    private LocalDate to;
 
     /**
      * Constructs a {@code DeadlineCommand} with a description and a due date.
@@ -26,7 +28,7 @@ public class EventCommand extends AddCommand {
      * @param from        The starting date/time of the task.
      * @param to          The ending date/time of the task.
      */
-    public EventCommand(String description, String from, String to) {
+    public EventCommand(String description, LocalDate from, LocalDate to) {
         super(description);
         this.from = from;
         this.to = to;

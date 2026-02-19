@@ -1,1 +1,5 @@
 Todo|homework|true
+Deadline|homework|false|20-02-2026
+Todo|homework|false
+Event|open house|false|20-02-2026|21-02-2026
+Event|party|false|20-02-2026|21-02-2026

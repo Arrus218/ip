@@ -139,9 +139,9 @@ public class Parser {
         int toIndex = data.indexOf("/to");
 
         if (fromIndex == -1) {
-            throw new GingerException("I need a /from date or time, meow!");
+            throw new GingerException("I need a /from date, meow!");
         } else if (toIndex == -1) {
-            throw new GingerException("I need a /to date or time, meow!");
+            throw new GingerException("I need a /to date, meow!");
         }
 
         String description = data.substring(0, fromIndex).trim();
@@ -150,12 +150,19 @@ public class Parser {
         if (description.isBlank()) {
             throw new GingerException("Event description not provided, meow!");
         } else if (from.isBlank()) {
-            throw new GingerException("Event start time not provided, meow!");
+            throw new GingerException("Event start date not provided, meow!");
         } else if (to.isBlank()) {
-            throw new GingerException("Event end time not provided, meow!");
+            throw new GingerException("Event end date not provided, meow!");
         }
 
-        return new EventCommand(description, from, to);
+        LocalDate fromDate = LocalDate.parse(from, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        LocalDate toDate = LocalDate.parse(to, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+
+        if (!toDate.isAfter(fromDate)) {
+            throw new GingerException("Nyaa???? The end date must be after the start date!");
+        }
+
+        return new EventCommand(description, fromDate, toDate);
     }
 
     private static Command prepareFind(String data) throws GingerException {
