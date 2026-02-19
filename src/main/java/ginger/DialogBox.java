@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 
 /**
  * Represents a dialog box consisting of an ImageView to represent the speaker's face
@@ -35,7 +36,20 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
+
+        // 1. Calculate dimensions for a center-crop square
+        double minDimension = Math.min(img.getWidth(), img.getHeight());
+        double x = (img.getWidth() - minDimension) / 2;
+        double y = (img.getHeight() - minDimension) / 2;
+
+        // 2. Set the Viewport to a square area in the middle of the image
+        displayPicture.setViewport(new javafx.geometry.Rectangle2D(x, y, minDimension, minDimension));
+
         displayPicture.setImage(img);
+
+        // 3. Apply the circle clip as before
+        Circle clip = new Circle(50, 50, 50);
+        displayPicture.setClip(clip);
     }
 
     /**
