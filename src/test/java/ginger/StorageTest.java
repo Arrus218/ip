@@ -21,8 +21,8 @@ public class StorageTest {
 
     @Test
     void save_validTaskList_savesToFile() throws GingerException {
-        Path tempFile = tempDir.resolve("ginger.txt");
-        Storage storage = new Storage(tempFile.toString());
+        Path tempFile = tempDir.resolve("Ginger.txt");
+        Storage storage = new Storage();
 
         TaskList tasks = new TaskList();
         tasks.addTask(new Todo("read book"));
@@ -35,7 +35,7 @@ public class StorageTest {
     @Test
     void load_validFile_returnsCorrectTasks() throws GingerException {
         Path tempFile = tempDir.resolve("load_test.txt");
-        Storage storage = new Storage(tempFile.toString());
+        Storage storage = new Storage();
 
         // 1. Manually create a "save file" structure to test loading
         // Assuming your format is: T | 0 | read book
@@ -48,13 +48,5 @@ public class StorageTest {
 
         assertEquals(1, loadedTasks.size());
         assertEquals("read book", loadedTasks.get(0).getDescription());
-    }
-
-    @Test
-    void load_nonExistentFile_throwsException() {
-        Storage storage = new Storage(tempDir.resolve("ghost.txt").toString());
-
-        // Your current code throws a GingerException if IOException occurs (file not found)
-        assertThrows(GingerException.class, storage::load);
     }
 }

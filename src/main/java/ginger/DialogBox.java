@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 
 /**
  * Represents a dialog box consisting of an ImageView to represent the speaker's face
@@ -36,7 +37,6 @@ public class DialogBox extends HBox {
         }
 
         dialog.setText(text);
-
         // 1. Calculate dimensions for a center-crop square
         double minDimension = Math.min(img.getWidth(), img.getHeight());
         double x = (img.getWidth() - minDimension) / 2;

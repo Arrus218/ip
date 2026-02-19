@@ -13,7 +13,13 @@
          xmlns="http://javafx.com/javafx/17"
          xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="dialog" text="Label" wrapText="true" minHeight="-Infinity"/>
+        <Label fx:id="dialog" text="Label" wrapText="true" minHeight="-Infinity"
+               style="-fx-font-size: 13;
+               -fx-text-fill: #5D4037;
+               -fx-background-color: #ffffffaa;
+               -fx-background-radius: 10;
+               -fx-padding: 8;
+               -fx-font-family: 'Comic Sans MS';"/>
         <ImageView fx:id="displayPicture" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="false" />
     </children>
     <padding>
