@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Ginger ginger = new Ginger("src/main/java/ginger/data/Ginger.txt");
+    private Ginger ginger = new Ginger();
 
     @Override
     public void start(Stage stage) {

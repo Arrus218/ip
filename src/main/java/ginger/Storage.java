@@ -22,8 +22,8 @@ import ginger.task.TaskList;
 public class Storage {
     private final Path path;
 
-    public Storage(String filePath) {
-        this.path = Paths.get(filePath);
+    public Storage() {
+        this.path = Paths.get("src/main/java/ginger/data/Ginger.txt");
     }
 
     /**
