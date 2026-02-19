@@ -1,3 +1,1 @@
-Deadline|work|false|07-02-2026
-Todo|test|false
-Deadline|testdeadline|false|20-02-2026
+Todo|homework|true
