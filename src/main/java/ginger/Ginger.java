@@ -18,17 +18,14 @@ public class Ginger {
     public boolean isExit;
 
     /**
-     * Initializes the Ginger application with a specific file path for data.
-     * <p>
-     * It attempts to load existing tasks from the provided path. If loading fails
+     * It attempts to load existing tasks from the file system. If loading fails
      * due to a {@code GingerException}, it notifies the user and starts with
      * an empty task list.
      * </p>
      *
-     * @param filePath The relative path to the text file where tasks are stored.
      */
-    public Ginger(String filePath) {
-        this.storage = new Storage(filePath);
+    public Ginger() {
+        this.storage = new Storage();
         this.ui = new Ui();
         this.isExit = false;
         try {
