@@ -10,7 +10,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for Ginger using FXML.
  */
 public class Main extends Application {
 
@@ -25,7 +25,7 @@ public class Main extends Application {
             Scene scene = new Scene(ap);
             stage.setTitle("Ginger");
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setGinger(ginger);  // inject the Duke instance
+            fxmlLoader.<MainWindow>getController().setGinger(ginger);  // inject the Ginger instance
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

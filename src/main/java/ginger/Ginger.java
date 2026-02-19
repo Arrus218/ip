@@ -15,6 +15,7 @@ public class Ginger {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private String startUpError = null;
     public boolean isExit;
 
     /**
@@ -31,7 +32,8 @@ public class Ginger {
         try {
             this.tasks = new TaskList(storage.load());
         } catch (GingerException e) {
-            tasks = new TaskList();
+            this.tasks = new TaskList();
+            this.startUpError = e.getMessage();
         }
     }
 
@@ -50,5 +52,9 @@ public class Ginger {
 
     public Ui getUi() {
         return this.ui;
+    }
+
+    public String getStartUpError() {
+        return this.startUpError;
     }
 }

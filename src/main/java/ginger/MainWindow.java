@@ -33,9 +33,16 @@ public class MainWindow extends AnchorPane {
         scrollPane.setStyle("-fx-background: " + "#FFDAB9" + "; -fx-background-color: transparent;");
     }
 
-    /** Injects the Duke instance */
+    /** Injects the Ginger instance */
     public void setGinger(Ginger g) {
         this.ginger = g;
+
+        String error = this.ginger.getStartUpError();
+        if (error != null) {
+            dialogContainer.getChildren().add(
+                    DialogBox.getGingerDialog("Meow! I had trouble loading your tasks: " + error, gingerImage)
+            );
+        }
 
         dialogContainer.getChildren().addAll(
                 DialogBox.getGingerDialog(this.ginger.getUi().showWelcome(), gingerImage)
@@ -43,7 +50,7 @@ public class MainWindow extends AnchorPane {
     }
 
     /**
-     * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
+     * Creates two dialog boxes, one echoing user input and the other containing Ginger's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
     @FXML
