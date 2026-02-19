@@ -138,4 +138,17 @@ public class Ui {
     public String showSeparator() {
         return ("------------------------------------------------");
     }
+
+    public String showHelp() {
+        return ("todo <task> : adds a todo task to the list\n" +
+                "deadline <task> /<by date> : adds a deadline task with a deadline to the list\n" +
+                "event <task> /<from> /<to> : adds an event task with a from date and to date\n" +
+                "list : shows all the tasks\n" +
+                "find <keyword> : searches and returns a list of tasks matching the specified keyword\n" +
+                "delete <index> : deletes the task at the specified index\n" +
+                "mark <index> : marks the task at the specified index as done\n" +
+                "unmark <index> : unmarks the task at the specified index as done\n" +
+                "help : shows this help message\n" +
+                "bye : exits the program");
+    }
 }

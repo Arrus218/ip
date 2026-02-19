@@ -10,6 +10,7 @@ import ginger.command.DeleteCommand;
 import ginger.command.EventCommand;
 import ginger.command.ExitCommand;
 import ginger.command.FindCommand;
+import ginger.command.HelpCommand;
 import ginger.command.ListCommand;
 import ginger.command.MarkCommand;
 import ginger.command.TodoCommand;
@@ -36,7 +37,8 @@ public class Parser {
         DEADLINE,
         EVENT,
         DELETE,
-        FIND;
+        FIND,
+        HELP;
 
         /**
          * Converts a string into a {@code CommandType}.
@@ -84,6 +86,7 @@ public class Parser {
             case EVENT -> Parser.prepareEvent(data);
             case DELETE -> new DeleteCommand(Parser.parseIndex(data));
             case FIND -> Parser.prepareFind(data);
+            case HELP -> new HelpCommand();
         };
     }
 
