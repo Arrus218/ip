@@ -138,3 +138,6 @@ Enter `bye` or click the `X` at the top right of the GUI to exit the program.
 
 Still lost? Use `help` to access the command guide in-app!
 
+All credit for images taken from:
+https://www.catster.com/cat-breeds/lazy-cat-breeds/
+https://www.rover.comg/uk/blog/orange-tabby-cat/
