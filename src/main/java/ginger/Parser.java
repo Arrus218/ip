@@ -70,6 +70,7 @@ public class Parser {
      */
     public static Command parse(String fullCommand) throws GingerException {
         String[] input = fullCommand.split(" ", 2);
+        assert input.length > 0 : "Split command should always result in at least one element in array";
         CommandType commandType = CommandType.fromString(input[0]);
         String data = input.length > 1 ? input[1] : "";
 
