@@ -117,15 +117,15 @@ public class Ui {
     }
 
     public String showHelp() {
-        return ("todo <task> : adds a todo task to the list\n" +
-                "deadline <task> /<by date> : adds a deadline task with a deadline to the list\n" +
-                "event <task> /<from> /<to> : adds an event task with a from date and to date\n" +
-                "list : shows all the tasks\n" +
-                "find <keyword> : searches and returns a list of tasks matching the specified keyword\n" +
-                "delete <index> : deletes the task at the specified index\n" +
-                "mark <index> : marks the task at the specified index as done\n" +
-                "unmark <index> : unmarks the task at the specified index as done\n" +
-                "help : shows this help message\n" +
+        return ("todo <task> : adds a todo task to the list\n\n" +
+                "deadline <task> /by <date> : adds a deadline task with a deadline to the list\n\n" +
+                "event <task> /from <date> /to <date> : adds an event task with a from date and to date\n\n" +
+                "list : shows all the tasks\n\n" +
+                "find <keyword> : searches and returns a list of tasks matching the specified keyword\n\n" +
+                "delete <index> : deletes the task at the specified index\n\n" +
+                "mark <index> : marks the task at the specified index as done\n\n" +
+                "unmark <index> : unmarks the task at the specified index as done\n\n" +
+                "help : shows this help message\n\n" +
                 "bye : exits the program");
     }
 }
