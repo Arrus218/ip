@@ -5,6 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.layout.Pane?>
 <fx:root alignment="TOP_RIGHT"
          maxHeight="1.7976931348623157E308"
          maxWidth="1.7976931348623157E308"
@@ -13,6 +14,7 @@
          xmlns="http://javafx.com/javafx/17"
          xmlns:fx="http://javafx.com/fxml/1">
     <children>
+        <Pane HBox.hgrow="ALWAYS" />
         <Label fx:id="dialog" text="Label" wrapText="true" minHeight="-Infinity"
                style="-fx-font-size: 13;
                -fx-text-fill: #5D4037;
