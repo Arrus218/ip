@@ -13,11 +13,6 @@ import ginger.task.TaskList;
  * </p>
  */
 public class Ui {
-    private final Scanner sc;
-
-    public Ui() {
-        this.sc = new Scanner(System.in);
-    }
 
     /**
      * Displays the welcome greeting to the user.
@@ -25,16 +20,6 @@ public class Ui {
     public String showWelcome() {
         return "Meow! I'm Ginger!\nWhat can I do for you?\n" +
                 "Hint: You can type `help` for a list of commands!";
-    }
-
-    /**
-     * Reads the next line of input from the user via the console.
-     *
-     * @return The raw string input entered by the user.
-     */
-    public String readCommand() {
-        // Get user input
-        return sc.nextLine();
     }
 
     /**
@@ -131,13 +116,6 @@ public class Ui {
         }
 
         return (sb + "Tasks: " + tasks.size());
-    }
-
-    /**
-     * Displays a horizontal separator line to organize console output.
-     */
-    public String showSeparator() {
-        return ("------------------------------------------------");
     }
 
     public String showHelp() {
