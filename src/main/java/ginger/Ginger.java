@@ -47,4 +47,8 @@ public class Ginger {
             return ui.showError(e);
         }
     }
+
+    public Ui getUi() {
+        return this.ui;
+    }
 }

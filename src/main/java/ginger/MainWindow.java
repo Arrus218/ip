@@ -3,7 +3,6 @@ package ginger;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -21,8 +20,6 @@ public class MainWindow extends AnchorPane {
     private VBox dialogContainer;
     @FXML
     private TextField userInput;
-    @FXML
-    private Button sendButton;
 
     private Ginger ginger;
 
@@ -37,6 +34,10 @@ public class MainWindow extends AnchorPane {
     /** Injects the Duke instance */
     public void setGinger(Ginger g) {
         this.ginger = g;
+
+        dialogContainer.getChildren().addAll(
+                DialogBox.getGingerDialog(this.ginger.getUi().showWelcome(), gingerImage)
+        );
     }
 
     /**

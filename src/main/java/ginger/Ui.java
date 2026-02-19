@@ -23,7 +23,8 @@ public class Ui {
      * Displays the welcome greeting to the user.
      */
     public String showWelcome() {
-        return "Meow! I'm Ginger!\nWhat can I do for you?";
+        return "Meow! I'm Ginger!\nWhat can I do for you?\n" +
+                "Hint: You can type `help` for a list of commands!";
     }
 
     /**
